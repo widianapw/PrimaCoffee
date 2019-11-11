@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".KasirListActivity"></activity>
+        <activity android:name=".KasirActivity" />
         <activity android:name=".features.kategori_crud.show_kategori.KategoriList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +24,7 @@
         <activity android:name=".KategoriActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>

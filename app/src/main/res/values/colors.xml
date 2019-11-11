@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="orange">#FFA500</color>
+    <color name="coklat">#ADBE8106</color>
+    <color name="warnabackground">#F4F6F6</color>
+    <color name="merah">#B71C1C</color>
+    <color name="ijo">#3C7E22</color>
+    <color name="black">#4D884F10</color>
+    <color name="register">#C6030303</color>
 </resources>

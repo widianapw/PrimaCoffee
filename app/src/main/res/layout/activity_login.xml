@@ -3,29 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.praktikumprognet17.LoginActivity">
 
-
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/fotokopi"
+        android:scaleType="centerCrop">
+    </ImageView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="360dp"
         android:layout_centerInParent="true"
+        app:cardCornerRadius="20dp"
         android:padding="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:backgroundTint="@color/cardview_light_background">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:textColor="#fff"
-            android:fontFamily="sans-serif"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/register"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-black"
             android:text="LOGIN"/>
 
         <EditText
             android:id="@+id/etEmail"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -37,7 +48,9 @@
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="105dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -49,7 +62,9 @@
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#FFF"
@@ -57,21 +72,23 @@
             android:background="@drawable/bg_rectangle_button"/>
 
         <TextView
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="53dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:fontFamily="cursive"
+            android:textColor="@color/register"
+            android:fontFamily="sans-serif-black"
             android:text="OR"
             android:layout_gravity="center"/>
 
         <Button
             android:id="@+id/btnRegister"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="250dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:textColor="#FFF"
             android:text="REGISTER"
             android:background="@drawable/bg_rectangle_button"/>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
