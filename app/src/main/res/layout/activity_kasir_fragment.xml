@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.kasir.KasirFragment">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_vertical_margin"
+        tools:context="com.example.praktikumprognet17.features.kasir.show_produk.ProdukList">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_produk"
+            android:layout_above="@+id/rincian">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rincian"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/cardview_light_background"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/labelJumlah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Jumlah Item (QTY) : "
+                    android:textSize="7pt">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/qty"
+                    android:layout_toRightOf="@+id/labelJumlah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="2"
+                    android:textSize="7pt">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/labelHarga"
+                    android:layout_below="@+id/labelJumlah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Total Harga : "
+                    android:textSize="7pt">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/total_harga"
+                    android:layout_toRightOf="@id/labelHarga"
+                    android:layout_below="@id/qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Rp.60.000"
+                    android:textSize="7pt"
+                    android:layout_marginBottom="15dp">
+                </TextView>
+
+                <Button
+                    android:id="@+id/cetak_struk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/register"
+                    android:fontFamily="sans-serif-black"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/total_harga"
+                    android:text="Cetak Struk Pembayaran"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="9dp"></Button>
+
+                <Button
+                    android:id="@+id/edit_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/total_harga"
+                    android:backgroundTint="@color/register"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Edit Item"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="9dp"></Button>
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</FrameLayout>

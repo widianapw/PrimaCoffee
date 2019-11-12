@@ -10,4 +10,7 @@
     <color name="ijo">#3C7E22</color>
     <color name="black">#4D884F10</color>
     <color name="register">#C6030303</color>
+
+    <color name="colorNavigationIcon">#dae9f6</color>
+    <color name="colorNavigationText">#ffffff</color>
 </resources>

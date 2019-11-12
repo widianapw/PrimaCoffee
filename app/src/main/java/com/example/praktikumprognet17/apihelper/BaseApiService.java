@@ -1,5 +1,6 @@
 package com.example.praktikumprognet17.apihelper;
 
+import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
 import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ValueKategori;
 
 import okhttp3.ResponseBody;
@@ -27,6 +28,8 @@ public interface BaseApiService {
 
     @GET("kategori/")
     Call<ValueKategori> view();
+
+    @GET("produk/") Call<ValueProduk> viewProduk();
 
 
 

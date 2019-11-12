@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,11 +31,18 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail;
     EditText etPassword;
     Button btnLogin;
-    Button btnRegister;
+//    Button btnRegister;
     ProgressDialog loading;
+    public final static String TAG_TOKEN = "token";
 
     Context mContext;
     BaseApiService mApiService;
+    SharedPreferences sharedPreferences;
+    boolean session = false;
+    String token;
+    final String SHARED_PREFERENCES_NAME = "shared_preferences";
+    final String SESSION_STATUS = "session";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mContext = this;
         mApiService = UtilsApi.getAPIService(); // meng-init yang ada di package apihelper
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        session = sharedPreferences.getBoolean(SESSION_STATUS, false);
+        token = sharedPreferences.getString(TAG_TOKEN, null);
+        if (session){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra(TAG_TOKEN, token);
+            finish();
+            startActivity(intent);
+        }
+
         initComponents();
     }
 
@@ -49,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
+//        btnRegister = (Button) findViewById(R.id.btnRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +77,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, RegisterActivity.class));
-            }
-        });
+//        btnRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(mContext, RegisterActivity.class));
+//            }
+//        });
     }
 
 
@@ -78,12 +96,16 @@ public class LoginActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
                                 if (jsonRESULTS.getString("status").equals("true")) {
-                                    // Jika login berhasil maka data nama yang ada di response API
-                                    // akan diparsing ke activity selanjutnya.
 
                                     String name = jsonRESULTS.getJSONObject("data").getString("name");
                                     Toast.makeText(mContext, "BERHASIL LOGIN "+name, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(mContext, KategoriList.class);
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putBoolean(SESSION_STATUS, true);
+                                    editor.putString(TAG_TOKEN, token);
+                                    editor.commit();
+
+                                    Intent intent = new Intent(mContext, MainActivity.class);
                                     startActivity(intent);
                                 } else {
                                     // Jika login gagal
