@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/list">
     <RelativeLayout
-        android:id="@+id/list"
+        android:layout_marginTop="10dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -16,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/cardview_light_background"
-            app:cardCornerRadius="15dp">
+            app:cardCornerRadius="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -43,16 +45,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="Rp.30.000" />
+
                 </LinearLayout>
 
-                <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical"
-                    android:backgroundTint="@color/cardview_light_background"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/plus"></ImageButton>
+<!--                <ImageButton-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:backgroundTint="@color/cardview_light_background"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/plus"></ImageButton>-->
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.setting.edit_profil.UserProfile"
+    android:layout_margin="20dp">
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email :"/>
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_below="@id/labelEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@drawable/bg_rectangle_edittext"/>
+
+    <TextView
+        android:id="@+id/labelNama"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nama :"/>
+    <EditText
+        android:id="@+id/etNama"
+        android:layout_below="@id/labelNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@drawable/bg_rectangle_edittext"/>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnSave"
+        android:layout_below="@+id/etNama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"/>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnEditPass"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/etNama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Password"
+
+        />
+</RelativeLayout>

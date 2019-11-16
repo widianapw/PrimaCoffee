@@ -36,8 +36,8 @@ public class KategoriList extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+//    @BindView(R.id.progress_bar)
+//    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,7 @@ public class KategoriList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kategori_list);
         ButterKnife.bind(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Kategori");
+
         mApiService = UtilsApi.getAPIService();
         viewAdapter = new KategoriRecyclerViewAdapter(this, results);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -55,16 +54,6 @@ public class KategoriList extends AppCompatActivity {
         recyclerView.setAdapter(viewAdapter);
         Log.e("m", "anjing");
         loadDataKategori();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void loadDataKategori() {
@@ -79,10 +68,9 @@ public class KategoriList extends AppCompatActivity {
             @Override
             public void onResponse(Call<ValueKategori> call, Response<ValueKategori> response) {
                 Log.e("PROGRESSSS", "SUDAH SAMPAI SINI2");
-                progressBar.setVisibility(View.GONE);
+//                progressBar.setVisibility(View.GONE);
                 String value = response.body().getValue();
                 Log.e("ERROR", "asa" + results);
-
 
                 results = response.body().getResult();
 

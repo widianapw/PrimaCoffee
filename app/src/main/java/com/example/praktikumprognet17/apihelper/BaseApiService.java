@@ -2,6 +2,7 @@ package com.example.praktikumprognet17.apihelper;
 
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
 import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ValueKategori;
+import com.example.praktikumprognet17.features.setting.edit_profil.ValueUser;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,6 +31,10 @@ public interface BaseApiService {
     Call<ValueKategori> view();
 
     @GET("produk/") Call<ValueProduk> viewProduk();
+
+    @GET("details/") Call<ValueUser> viewUser(String id);
+
+
 
 
 

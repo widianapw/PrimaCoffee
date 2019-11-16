@@ -5,22 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.setting.SettingFragment">
+    tools:context=".features.setting.SettingFragment"
+    android:layout_margin="20dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="USERNAME">
+        </TextView>
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnEditProfil"
+            android:layout_below="@+id/username"
+            android:text="Edit Profil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Button>
+        <Button
+            android:id="@+id/button_logoutMain"
+            android:layout_below="@+id/btnEditProfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log Out" />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Setting"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-    android:id="@+id/button_logoutMain"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Log Out" />
 
 </FrameLayout>

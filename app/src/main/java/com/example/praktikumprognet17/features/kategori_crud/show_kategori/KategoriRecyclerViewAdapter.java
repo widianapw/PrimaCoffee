@@ -22,7 +22,6 @@ public class KategoriRecyclerViewAdapter extends RecyclerView.Adapter<KategoriRe
     public KategoriRecyclerViewAdapter(Context context, List<ResultKategori> results) {
         this.context = context;
         this.results = results;
-
     }
 
     @Override

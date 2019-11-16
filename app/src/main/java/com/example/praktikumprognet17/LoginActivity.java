@@ -33,15 +33,18 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
 //    Button btnRegister;
     ProgressDialog loading;
-    public final static String TAG_TOKEN = "token";
+
 
     Context mContext;
     BaseApiService mApiService;
     SharedPreferences sharedPreferences;
     boolean session = false;
     String token;
+    int id_user;
     final String SHARED_PREFERENCES_NAME = "shared_preferences";
     final String SESSION_STATUS = "session";
+    public final static String TAG_TOKEN = "token";
+    final int ID_USER = 0;
 
 
     @Override
@@ -53,13 +56,15 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         session = sharedPreferences.getBoolean(SESSION_STATUS, false);
         token = sharedPreferences.getString(TAG_TOKEN, null);
+        id_user = sharedPreferences.getInt(String.valueOf(ID_USER),0);
         if (session){
+            Log.e("as",""+id_user);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra(TAG_TOKEN, token);
+            intent.putExtra(String.valueOf(ID_USER), id_user);
             finish();
             startActivity(intent);
         }
-
         initComponents();
     }
 
@@ -102,7 +107,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putBoolean(SESSION_STATUS, true);
-                                    editor.putString(TAG_TOKEN, token);
+                                    editor.putString(TAG_TOKEN, jsonRESULTS.getString("token"));
+                                    editor.putInt(String.valueOf(ID_USER), jsonRESULTS.getJSONObject("data").getInt("id"));
                                     editor.commit();
 
                                     Intent intent = new Intent(mContext, MainActivity.class);
