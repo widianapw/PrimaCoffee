@@ -9,6 +9,4 @@ class Kategori extends Model
     use HasApiTokens;
     protected $table = "tb_kategori";
     protected $fillable = ['kategori'];
-    public $timestamp = false;
-
 }

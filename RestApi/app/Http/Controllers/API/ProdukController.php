@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Produk;
+use App\Keranjang;
+use DB;
 
 class ProdukController extends Controller
 {
@@ -14,7 +17,12 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        //
+        $produk = Produk::get();
+        $num_keranjang = Keranjang::sum('qty');
+        $harga_keranjang = Keranjang::select(DB::raw('COALESCE (SUM(harga*qty),0) as harga_total'))
+            ->join('tb_produk','tb_keranjang.id_produk','=','tb_produk.id')
+            ->get();
+        return array("result"=>$produk,"total_keranjang"=>$num_keranjang,"harga_keranjang"=>$harga_keranjang);
     }
 
     /**

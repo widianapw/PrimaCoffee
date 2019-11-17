@@ -1,5 +1,7 @@
 package com.example.praktikumprognet17.apihelper;
 
+import android.content.Intent;
+
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
 import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ValueKategori;
 import com.example.praktikumprognet17.features.setting.edit_profil.ValueUser;
@@ -17,7 +19,7 @@ public interface BaseApiService {
     @FormUrlEncoded
     @POST("login")
     Call<ResponseBody> loginRequest(@Field("email") String email,
-                                   @Field("password") String password);
+                                    @Field("password") String password);
 
     // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/register.php
     @FormUrlEncoded
@@ -30,15 +32,17 @@ public interface BaseApiService {
     @GET("kategori/")
     Call<ValueKategori> view();
 
-    @GET("produk/") Call<ValueProduk> viewProduk();
 
-    @GET("details/") Call<ValueUser> viewUser(String id);
+    @GET("produk/")
+    Call<ValueProduk> viewProduk();
 
+    @FormUrlEncoded
+    @POST("keranjang")
+    Call<ResponseBody> keranjangRequest(@Field("id_produk") int id_produk,
+                                        @Field("qty") int qty);
 
-
-
-
-
+    @GET("details/")
+    Call<ValueUser> viewUser(String id);
 
 
 }

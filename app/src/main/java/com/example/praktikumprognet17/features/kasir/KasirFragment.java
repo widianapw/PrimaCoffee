@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
@@ -22,6 +23,8 @@ import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickList
 import com.example.praktikumprognet17.features.kasir.show_produk.ProdukRecyclerViewAdapter;
 import com.example.praktikumprognet17.features.kasir.show_produk.ResultProduk;
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +36,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.content.ContentValues.TAG;
+
 public class KasirFragment extends Fragment implements OnItemClickListener {
     public static final String URL = "http://10.0.2.2:8000/api/";
     private List<ResultProduk> results = new ArrayList<>();
     private ProdukRecyclerViewAdapter viewAdapter;
     private SwipeRefreshLayout refreshLayout;
     BaseApiService mApiService;
-
+    TextView tvQty;
     @BindView(R.id.recycler_produk)
     RecyclerView recycler_produk;
 
@@ -48,6 +53,7 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_kasir_fragment, container, false);
+        Log.e("bram", "onCreateView: "+ results.size());
         loadDataProduk(view);
         refreshLayout = view.findViewById(R.id.refreshItems);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -61,37 +67,34 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-//        Button btnEdit = view.findViewById(R.id.edit_item);
-//        btnEdit.setOnClickListener(v->{
-//            new QtyDialog().show(getFragmentManager(),"QtyDialog");
-//        });
-
-    }
 
     private void loadDataProduk(@NonNull View view) {
         mApiService = UtilsApi.getAPIService();
         viewAdapter = new ProdukRecyclerViewAdapter(getActivity(), results, (v, args) -> onItemClicked(v, args));
         RecyclerView recyclerView = view.findViewById(R.id.recycler_produk);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        Log.e("as", "" + viewAdapter);
         recyclerView.setAdapter(viewAdapter);
-        Log.e("m", "anjing");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         BaseApiService api = retrofit.create(BaseApiService.class);
+        Log.e("AS", "klg"+api);
         Call<ValueProduk> call = api.viewProduk();
-        Log.e("PROGRESSSS", "SUDAH SAMPAI SINI");
         call.enqueue(new Callback<ValueProduk>() {
             @Override
             public void onResponse(Call<ValueProduk> call, Response<ValueProduk> response) {
-                Log.e("PROGRESSSS", "SUDAH SAMPAI SINI2");
-                String value = response.body().getValue();
-                Log.e("ERROR", "asa" + results);
+                int i;
+                i = response.body().getTotal_keranjang();
+                tvQty = view.findViewById(R.id.qty);
+                tvQty.setText(Integer.toString(i));
+//                tvQty.setText(Integer.toString(results.get(0).getHarga_total()));
+
+                results = response.body().getHarga_keranjang();
+                TextView tvTotalHarga = view.findViewById(R.id.total_harga);
+                tvTotalHarga.setText("Rp "+results.get(0).getHarga_total());
+                Log.e("ASSA", ""+results.get(0).getHarga_total());
+
                 results = response.body().getResult();
                 viewAdapter = new ProdukRecyclerViewAdapter(getActivity(), results, (v, args) -> KasirFragment.this.onItemClicked(v, args));
                 recyclerView.setAdapter(viewAdapter);

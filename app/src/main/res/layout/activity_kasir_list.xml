@@ -88,14 +88,14 @@
                 android:textSize="9dp"></Button>
 
             <Button
-                android:id="@+id/edit_item"
+                android:id="@+id/detail_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/total_harga"
                 android:backgroundTint="@color/register"
                 android:fontFamily="sans-serif-black"
-                android:text="Edit Item"
+                android:text="Detail Item"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="9dp"></Button>
         </RelativeLayout>

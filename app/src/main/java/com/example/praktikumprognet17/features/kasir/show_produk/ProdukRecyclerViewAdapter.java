@@ -2,6 +2,7 @@ package com.example.praktikumprognet17.features.kasir.show_produk;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,9 @@ public class ProdukRecyclerViewAdapter extends RecyclerView.Adapter<ProdukRecycl
         holder.textViewHarga.setText(String.valueOf(result.getHarga()));
         holder.parentLayout.setOnClickListener(v ->{
             Bundle args = new Bundle();
-            args.putInt("id",result.getIdProduk());
+            Log.e("id_produkk",""+result.getId());
+            Log.e("harga",""+result.getHarga());
+            args.putInt("id",result.getId());
             args.putString("nama",result.getNama_produk());
             args.putInt("harga",result.getHarga());
             listener.onItemClicked(v,args);

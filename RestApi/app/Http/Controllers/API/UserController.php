@@ -14,11 +14,12 @@ class UserController extends Controller
     public $successStatus = 200;
 
     public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password'),'is_admin' => 0])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('nApp')->accessToken;
             $result = array(
                 "status" => true,
+                "token" => $user->createToken('nApp')->accessToken,
                 "message" => "Login Berhasil",
                 "data" => $user,
             );
@@ -37,6 +38,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
+            'is_admin' => '0',
         ]);
 
         if ($validator->fails()) {
@@ -46,10 +48,13 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $success['token'] =  $user->createToken('nApp')->accessToken;
-        $success['name'] =  $user->name;
-
-        return response()->json(['success'=>$success], $this->successStatus);
+        
+        $result = array(
+            "status" => true,
+            "token" => $user->createToken('nApp')->accessToken,
+            "name" => $user,
+        );
+        return response()->json($result, $this->successStatus);
     }
 
     public function details()
@@ -62,5 +67,10 @@ class UserController extends Controller
         $user = Auth::user();
         Auth::guard('web')->logout();
         return response()->json(['success' => $user], $this->successStatus);
+    }
+
+    public function getUser($id){
+        $user = User::where('id',$id)->get()->first();
+        return response()->json($user, $this->successStatus);
     }
 }

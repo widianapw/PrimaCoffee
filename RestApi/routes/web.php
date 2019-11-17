@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::resource('/kategori','KategoriController');
+Route::resource('/produk','ProdukController');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/chart','HomeController@chart');
