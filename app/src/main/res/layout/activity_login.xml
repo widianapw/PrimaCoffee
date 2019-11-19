@@ -1,85 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/overlay_dark_80"
     tools:context="com.example.praktikumprognet17.LoginActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/fotokopi"
-        android:scaleType="centerCrop">
-    </ImageView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="10dp"
+        android:padding="15dp"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:backgroundTint="@color/cardview_light_background">
 
-        <RelativeLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi There,"
+            android:textSize="10pt"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_small" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back"
+            android:textSize="10pt"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_xlarge" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_large" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_large" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logokopi"
+            android:layout_gravity="center_horizontal">
+        </ImageView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_xlarge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/login"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/textLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
-                android:textColor="@color/register"
-                android:layout_marginTop="12dp"
-                android:fontFamily="sans-serif-black"
-                android:text="LOGIN PAGE"/>
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_below="@+id/textLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:textSize="6.3pt"
-                android:textColorHint="@color/login"
-                android:layout_marginTop="20dp"
-                android:padding="8dp"
-                android:inputType="textEmailAddress"
-                android:background="@drawable/bg_rectangle_edittext"
-                />
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_below="@id/etEmail"
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="6.3pt"
-                android:hint="Password"
-                android:textColorHint="@color/login"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:background="@drawable/bg_rectangle_edittext"
-                />
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:layout_below="@id/etPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFF"
-                android:text="Login"
-                android:background="@drawable/bg_rectangle_button"/>
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginRight="-4dp"
+            android:inputType="textEmailAddress"
+            android:maxLength="50"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/cardview_light_background"
+            android:theme="@style/EditText.Gold">
+        </androidx.appcompat.widget.AppCompatEditText>
 
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_mlarge" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/login"
+            android:textStyle="bold" />
 
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginRight="-4dp"
+            android:inputType="textPassword"
+            android:maxLength="50"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/cardview_light_background"
+            android:theme="@style/EditText.Gold">
+        </androidx.appcompat.widget.AppCompatEditText>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_middle" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_large" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginRight="-4dp"
+            android:background="@drawable/btn_rounded_green_300"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_grey_900" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/spacing_medium" />
+
+
+
+    </LinearLayout>
+</ScrollView>
