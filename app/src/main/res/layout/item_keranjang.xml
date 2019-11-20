@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/list_keranjang">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/list_keranjang"
+    android:layout_marginBottom="20dp">
     <TextView
         android:id="@+id/nama_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nama_produk"></TextView>
+        android:text="nama_produk"
+        android:layout_weight="1"></TextView>
     <TextView
+        android:layout_weight="1"
         android:id="@+id/harga_keranjang"
         android:layout_toRightOf="@+id/nama_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="harga"></TextView>
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:layout_weight="1"
         android:id="@+id/qty_keranjang"
         android:layout_toRightOf="@+id/harga_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Qty"/>
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/subtotal_keranjang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:layout_weight="1"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X"
+        android:layout_weight="1"/>
+</LinearLayout>

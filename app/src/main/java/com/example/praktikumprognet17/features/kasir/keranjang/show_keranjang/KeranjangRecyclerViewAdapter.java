@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<KeranjangRecyclerViewAdapter.ViewHolder>{
+public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<KeranjangRecyclerViewAdapter.ViewHolder> {
     private Context context;
     List<ResultKeranjang> results;
 
@@ -37,7 +39,14 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ResultKeranjang result = results.get(position);
+        int totHarga;
+        totHarga = result.getHarga() * result.getQty();
 
+        holder.textViewNamaKeranjang.setText(result.getNama_produk());
+        holder.textViewHargaKeranjang.setText(Integer.toString(result.getHarga()));
+        holder.textViewQtyKeranjang.setText(Integer.toString(result.getQty()));
+        holder.textViewSubtotalKeranjang.setText(Integer.toString(totHarga));
     }
 
     @Override
@@ -47,14 +56,24 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.nama_keranjang)
+        TextView textViewNamaKeranjang;
 
-        @BindView(R.id.kategori)
-        TextView textViewKategori;
+        @BindView(R.id.harga_keranjang)
+        TextView textViewHargaKeranjang;
 
+        @BindView(R.id.qty_keranjang)
+        TextView textViewQtyKeranjang;
+
+        @BindView(R.id.subtotal_keranjang)
+        TextView textViewSubtotalKeranjang;
+
+        LinearLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            parentLayout = itemView.findViewById(R.id.list_keranjang);
         }
     }
 }

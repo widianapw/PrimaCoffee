@@ -8,16 +8,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
+import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangDialog;
+import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangFragmentBottom;
 import com.example.praktikumprognet17.features.kasir.qty_dialog.QtyDialog;
 import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickListener;
 import com.example.praktikumprognet17.features.kasir.show_produk.ProdukRecyclerViewAdapter;
@@ -48,27 +53,40 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
     @BindView(R.id.recycler_produk)
     RecyclerView recycler_produk;
 
+    View mView;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_kasir_fragment, container, false);
         Log.e("bram", "onCreateView: "+ results.size());
-        loadDataProduk(view);
-        refreshLayout = view.findViewById(R.id.refreshItems);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadDataProduk(view);
-                refreshLayout.setRefreshing(false);
-            }
-        });
 
-        return view;
+        mView = view;
+
+        try {
+
+            String message = getArguments().getString("from");
+            if(message != null){
+                loadDataProduk(view);
+            }else{
+                Log.e("ANJING", "TIDAK DELOAD");
+            }
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        loadDataProduk(mView);
+        refreshLayout = view.findViewById(R.id.refreshItems);
+        refreshLayout.setOnRefreshListener(() -> {
+            loadDataProduk(mView);
+            refreshLayout.setRefreshing(false);
+        });
+        return mView;
     }
 
-
-    private void loadDataProduk(@NonNull View view) {
+    public void loadDataProduk(@NonNull View view) {
         mApiService = UtilsApi.getAPIService();
         viewAdapter = new ProdukRecyclerViewAdapter(getActivity(), results, (v, args) -> onItemClicked(v, args));
         RecyclerView recyclerView = view.findViewById(R.id.recycler_produk);
@@ -110,11 +128,23 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
 
     @Override
     public void onItemClicked(View v, Bundle args) {
-        DialogFragment qtyDialog = new QtyDialog();
+        DialogFragment qtyDialog = new QtyDialog(KasirFragment.this, mView);
         qtyDialog.setArguments(args);
         qtyDialog.show(getFragmentManager(),"qtyDialog");
         Log.e("asd",""+args);
 
 //        new QtyDialog().show(getFragmentManager(),"QtyDialog");
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button btnDetailKeranjang = view.findViewById(R.id.button_detail_item);
+        btnDetailKeranjang.setOnClickListener(v->{
+            KeranjangFragmentBottom fragment = new KeranjangFragmentBottom();
+            fragment.show(getFragmentManager(), fragment.getTag());
+//            DialogFragment dfr =  new KeranjangDialog();
+//            dfr.show(getFragmentManager(), "dfr");
+        });
     }
 }

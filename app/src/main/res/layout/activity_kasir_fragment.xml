@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    android:id="@+id/kasir_fragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -79,27 +81,27 @@
                     android:text="Rp.60.000"
                     android:textSize="7pt"></TextView>
 
-                <Button
-                    android:id="@+id/cetak_struk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/total_harga"
-                    android:layout_alignParentRight="true"
-                    android:backgroundTint="@color/register"
-                    android:fontFamily="sans-serif-black"
-                    android:text="Cetak Struk Pembayaran"
-                    android:textColor="@color/cardview_light_background"
-                    android:textSize="9dp"></Button>
+<!--                <Button-->
+<!--                    android:id="@+id/cetak_struk"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/total_harga"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:backgroundTint="@color/register"-->
+<!--                    android:fontFamily="sans-serif-black"-->
+<!--                    android:text="Cetak Struk Pembayaran"-->
+<!--                    android:textColor="@color/cardview_light_background"-->
+<!--                    android:textSize="9dp"></Button>-->
 
                 <Button
-                    android:id="@+id/edit_item"
+                    android:id="@+id/button_detail_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/total_harga"
                     android:layout_alignParentLeft="true"
                     android:backgroundTint="@color/register"
                     android:fontFamily="sans-serif-black"
-                    android:text="Edit Item"
+                    android:text="Detail Item"
                     android:textColor="@color/cardview_light_background"
                     android:textSize="9dp"></Button>
             </RelativeLayout>

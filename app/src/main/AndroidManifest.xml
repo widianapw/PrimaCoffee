@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangDialog"></activity>
+        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangFragmentBottom"></activity>
+        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangDialog" />
         <activity android:name=".features.kasir.qty_dialog.QtyDialog" />
         <activity android:name=".features.setting.edit_profil.EditPassword" />
         <activity android:name=".features.setting.edit_profil.UserProfile" />

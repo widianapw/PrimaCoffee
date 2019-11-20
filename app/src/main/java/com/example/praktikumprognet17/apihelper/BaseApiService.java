@@ -2,6 +2,7 @@ package com.example.praktikumprognet17.apihelper;
 
 import android.content.Intent;
 
+import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.ValueKeranjang;
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
 import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ValueKategori;
 import com.example.praktikumprognet17.features.setting.edit_profil.ValueUser;
@@ -43,6 +44,9 @@ public interface BaseApiService {
 
     @GET("details/")
     Call<ValueUser> viewUser(String id);
+
+    @GET("keranjang/")
+    Call<ValueKeranjang> viewKeranjang();
 
 
 }

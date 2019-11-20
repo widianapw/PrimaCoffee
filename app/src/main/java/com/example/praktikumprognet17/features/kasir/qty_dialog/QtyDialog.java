@@ -1,16 +1,22 @@
 package com.example.praktikumprognet17.features.kasir.qty_dialog;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +30,9 @@ import com.example.praktikumprognet17.MainActivity;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
+import com.example.praktikumprognet17.features.kasir.KasirFragment;
+import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickListener;
+import com.example.praktikumprognet17.features.setting.SettingFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,11 +45,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QtyDialog extends DialogFragment {
-    Context mContext;
+    KasirFragment mContext;
     BaseApiService mApiService;
     int qty;
     private EditText etQty;
-    
+    private OnItemClickListener listener;
+    final Fragment fragment1 = new KasirFragment();
+    View mView;
+
+    public QtyDialog(KasirFragment context, View view){
+        mContext = context;
+        mView = view;
+    }
+
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -74,6 +93,23 @@ public class QtyDialog extends DialogFragment {
                                     JSONObject jsonRESULTS = new JSONObject(response.body().string());
                                     if (jsonRESULTS.getString("status").equals("true")) {
                                         Log.e("id_produk", "Data Berhasil Ditambahkan");
+
+//                                        Bundle args = new Bundle();
+//                                        args.putString("from","dialog");
+//                                        listener.onItemClicked(v,args);
+
+                                        Bundle data = new Bundle();
+                                        data.putString("from","dialog");
+                                        KasirFragment kasirFragment =  new KasirFragment();
+                                        kasirFragment.setArguments(data);
+
+                                        mContext.loadDataProduk(mView);
+
+//                                        getActivity().getSupportFragmentManager()
+//                                                .beginTransaction()
+//                                                .replace(R.id.kasir_fragment, kasirFragment)
+//                                                .commit();
+
 //                                        Intent i = new Intent(requireContext(), MainActivity.class);
 //                                        startActivity(i);
 //                                                    QtyDialog.this.getDialog().cancel();
@@ -89,6 +125,8 @@ public class QtyDialog extends DialogFragment {
                             } else {
                                 Log.i("debug", "onResponse: GA BERHASIL");
                             }
+
+
                         }
 
                         @Override
