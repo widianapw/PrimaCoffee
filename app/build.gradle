@@ -10,6 +10,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+
+        }
     }
     buildTypes {
         release {
@@ -24,6 +27,11 @@ android {
 }
 
 dependencies {
+    implementation "android.arch.work:work-runtime:1.0.0-alpha04"
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+    implementation 'com.google.firebase:firebase-iid:20.0.0'
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
@@ -51,4 +59,14 @@ dependencies {
     // this is needed to use the updated AppCompatActivity
     implementation 'androidx.activity:activity:1.0.0-rc01' // or remove -ktx if not using kotlin
     implementation 'androidx.fragment:fragment:1.1.0-rc04'
+
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+
+    implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+
 }
+apply plugin: 'com.google.gms.google-services'

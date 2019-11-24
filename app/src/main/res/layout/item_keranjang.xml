@@ -1,46 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_keranjang"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="20dp">
+
+
     <TextView
         android:id="@+id/nama_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nama_produk"
-        android:layout_weight="1"></TextView>
+        android:padding="5dp"
+        android:text="nama_produk"></TextView>
+
     <TextView
-        android:layout_weight="1"
+
         android:id="@+id/harga_keranjang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/nama_keranjang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:padding="5dp"
         android:text="harga"></TextView>
+
     <TextView
+        android:id="@+id/x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x"
-        android:layout_weight="1"
-        />
+        android:layout_toRightOf="@id/harga_keranjang"
+        android:padding="5dp"
+        android:text="x" />
+
     <TextView
-        android:layout_weight="1"
         android:id="@+id/qty_keranjang"
-        android:layout_toRightOf="@+id/harga_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Qty"/>
+        android:layout_toRightOf="@+id/x"
+        android:padding="5dp"
+        android:text="qty"
+
+        />
 
     <TextView
         android:id="@+id/subtotal_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total"
-        android:layout_weight="1"/>
+        android:layout_toRightOf="@id/qty_keranjang"
+        android:padding="5dp"
+        android:text="Total" />
+
+
     <Button
+        android:id="@+id/button_edit_keranjang"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/subtotal_keranjang"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/button_delete_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X"
-        android:layout_weight="1"/>
-</LinearLayout>
+        android:layout_alignParentRight="true"
+        android:text="x" />
+</RelativeLayout>

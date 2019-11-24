@@ -21,13 +21,14 @@ import android.widget.Toast;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangDialog;
-import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangFragmentBottom;
+import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangActivity;
+
 import com.example.praktikumprognet17.features.kasir.qty_dialog.QtyDialog;
 import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickListener;
 import com.example.praktikumprognet17.features.kasir.show_produk.ProdukRecyclerViewAdapter;
 import com.example.praktikumprognet17.features.kasir.show_produk.ResultProduk;
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
+import com.example.praktikumprognet17.features.setting.edit_profil.UserProfile;
 
 import org.json.JSONObject;
 
@@ -61,22 +62,7 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_kasir_fragment, container, false);
         Log.e("bram", "onCreateView: "+ results.size());
-
         mView = view;
-
-        try {
-
-            String message = getArguments().getString("from");
-            if(message != null){
-                loadDataProduk(view);
-            }else{
-                Log.e("ANJING", "TIDAK DELOAD");
-            }
-
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-
         loadDataProduk(mView);
         refreshLayout = view.findViewById(R.id.refreshItems);
         refreshLayout.setOnRefreshListener(() -> {
@@ -127,7 +113,7 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClicked(View v, Bundle args) {
+    public void onItemClicked (View v, Bundle args) {
         DialogFragment qtyDialog = new QtyDialog(KasirFragment.this, mView);
         qtyDialog.setArguments(args);
         qtyDialog.show(getFragmentManager(),"qtyDialog");
@@ -141,10 +127,17 @@ public class KasirFragment extends Fragment implements OnItemClickListener {
         super.onViewCreated(view, savedInstanceState);
         Button btnDetailKeranjang = view.findViewById(R.id.button_detail_item);
         btnDetailKeranjang.setOnClickListener(v->{
-            KeranjangFragmentBottom fragment = new KeranjangFragmentBottom();
-            fragment.show(getFragmentManager(), fragment.getTag());
+            startActivity(new Intent(getContext(), KeranjangActivity.class));
+//            KeranjangFragmentBottom fragment = new KeranjangFragmentBottom();
+//            fragment.show(getFragmentManager(), fragment.getTag());
 //            DialogFragment dfr =  new KeranjangDialog();
 //            dfr.show(getFragmentManager(), "dfr");
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadDataProduk(mView);
     }
 }

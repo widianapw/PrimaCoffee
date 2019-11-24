@@ -1,33 +1,66 @@
 package com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.praktikumprognet17.R;
-import com.example.praktikumprognet17.features.kategori_crud.show_kategori.KategoriRecyclerViewAdapter;
-import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ResultKategori;
+import com.example.praktikumprognet17.apihelper.BaseApiService;
+import com.example.praktikumprognet17.apihelper.UtilsApi;
+import com.example.praktikumprognet17.database.KeranjangAppDatabase;
+import com.example.praktikumprognet17.database.entity.Keranjang;
+import com.example.praktikumprognet17.features.kasir.keranjang.edit_keranjang.EditQtyDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<KeranjangRecyclerViewAdapter.ViewHolder> {
-    private Context context;
+    Context context;
     List<ResultKeranjang> results;
+    private ArrayList<Keranjang> daftarKeranjang;
 
-    public KeranjangRecyclerViewAdapter(Context context, List<ResultKeranjang> results) {
+    BaseApiService mApiService;
+    private LinearLayout layout_keranjang;
+    public static final String URL = "http://10.0.2.2:8000/api/";
+    OnItemEditClickListener listener;
+    KeranjangAppDatabase database;
+
+
+
+    public KeranjangRecyclerViewAdapter(Context context, List<ResultKeranjang> results, OnItemEditClickListener listener) {
+        this.listener = listener;
         this.context = context;
         this.results = results;
     }
+
 
     @NonNull
     @Override
@@ -37,16 +70,51 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         return holder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         ResultKeranjang result = results.get(position);
+
         int totHarga;
         totHarga = result.getHarga() * result.getQty();
-
+        Log.e("as", "" + getItemCount());
         holder.textViewNamaKeranjang.setText(result.getNama_produk());
         holder.textViewHargaKeranjang.setText(Integer.toString(result.getHarga()));
         holder.textViewQtyKeranjang.setText(Integer.toString(result.getQty()));
         holder.textViewSubtotalKeranjang.setText(Integer.toString(totHarga));
+        holder.btnEditKeranjang.setOnClickListener(v -> {
+            Log.e("AS1J", result.getId()+"");
+            Bundle args = new Bundle();
+            args.putInt("id",result.getId());
+            args.putString("nama", result.getNama_produk());
+            args.putInt("qty",result.getQty());
+            listener.onItemClicked(v,args);
+        });
+
+        holder.btnDeleteKeranjang.setOnClickListener(v -> {
+            Log.e("ASJ", result.getId()+"");
+            mApiService = UtilsApi.getAPIService();
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            BaseApiService api = retrofit.create(BaseApiService.class);
+            Call<ResponseBody> call = api.deleteKeranjang(result.getId());
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    results.remove(position);
+                    notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+        });
+
     }
 
     @Override
@@ -54,8 +122,9 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         return results.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+
         @BindView(R.id.nama_keranjang)
         TextView textViewNamaKeranjang;
 
@@ -68,12 +137,31 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         @BindView(R.id.subtotal_keranjang)
         TextView textViewSubtotalKeranjang;
 
-        LinearLayout parentLayout;
+        @BindView(R.id.button_delete_keranjang)
+        Button btnDeleteKeranjang;
+
+        @BindView(R.id.button_edit_keranjang)
+        Button btnEditKeranjang;
+
+        RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             parentLayout = itemView.findViewById(R.id.list_keranjang);
         }
+
     }
+
+    public ResultKeranjang getKeranjangAt(int position) {
+        return results.get(position);
+    }
+
+//    private void onDeleteData(int position){
+//        database.keranjangDAO().delete(results.get(position));
+//        results.remove(position);
+//        notifyItemRemoved(position);
+//        notifyItemRangeChanged(position, results.size());
+//
+//    }
 }

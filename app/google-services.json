@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "319516149946",
+    "firebase_url": "https://praktikumprogmob17.firebaseio.com",
+    "project_id": "praktikumprogmob17",
+    "storage_bucket": "praktikumprogmob17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319516149946:android:7ced3241a7e38967a21a83",
+        "android_client_info": {
+          "package_name": "com.example.praktikumprognet17"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319516149946-omsbksb88rmffp1ffam4nsjrpotn95ka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.praktikumprognet17",
+            "certificate_hash": "79292fecdb92bc38d65ef14cf03860ef9f0b23e9"
+          }
+        },
+        {
+          "client_id": "319516149946-kkmnt77eem9kp5gr4i9lv1pq0on028cp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8w2tcY7QEotfv9d64FEuOfDExhrBfUJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319516149946-kkmnt77eem9kp5gr4i9lv1pq0on028cp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

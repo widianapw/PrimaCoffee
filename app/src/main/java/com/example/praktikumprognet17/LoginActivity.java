@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
 import com.example.praktikumprognet17.features.kategori_crud.show_kategori.KategoriList;
+import com.example.praktikumprognet17.util.Connectivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     final String SESSION_STATUS = "session";
     public final static String TAG_TOKEN = "token";
     final int ID_USER = 0;
-
-
+    Connectivity cm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,14 @@ public class LoginActivity extends AppCompatActivity {
         session = sharedPreferences.getBoolean(SESSION_STATUS, false);
         token = sharedPreferences.getString(TAG_TOKEN, null);
         id_user = sharedPreferences.getInt(String.valueOf(ID_USER),0);
+        cm = new Connectivity();
+        if(cm.isConnected(this)){
+            Toast.makeText(mContext, "TERKONEKSI", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(mContext, "TIDAK ADA INTERNET", Toast.LENGTH_SHORT).show();
+        }
+
         if (session){
             Log.e("as",""+id_user);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.praktikumprognet17">
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangFragmentBottom"></activity>
-        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangDialog" />
+
+        <activity android:name=".features.kasir.keranjang.bayar_keranjang.KeranjangBayar"></activity>
+        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangActivity" />
+        <activity android:name=".features.kasir.keranjang.edit_keranjang.EditQtyDialog" />
+        <activity android:name=".Firebase">
+
+        </activity>
         <activity android:name=".features.kasir.qty_dialog.QtyDialog" />
         <activity android:name=".features.setting.edit_profil.EditPassword" />
         <activity android:name=".features.setting.edit_profil.UserProfile" />
@@ -33,6 +40,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <!-- [END fcm_default_icon] -->
+        <!-- [START fcm_default_channel] -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="SA" />
     </application>
 
 </manifest>

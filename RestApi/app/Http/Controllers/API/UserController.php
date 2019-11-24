@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -72,5 +73,36 @@ class UserController extends Controller
     public function getUser($id){
         $user = User::where('id',$id)->get()->first();
         return response()->json($user, $this->successStatus);
+    }
+
+    public function updateProfile(request $request){
+        
+        $user = User::where('id',$request->id)->first();
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->update();
+        return $user;
+    }
+
+    public function updatePassword(request $request){
+        
+        $user = User::where('id',$request->id)->first();
+        
+        if (Hash::check($request->pass_lama, $user->password)) {
+            $user->password = Hash::make($request->pass_baru);
+            $user->update();
+            $result = array(
+                "status" => true,
+                "data" => $user,
+            );
+        }
+        else{
+            $result = array(
+                "status" => false,
+                "data" => $user,
+            );
+        }
+        return response()->json($result, $this->successStatus);  
+        
     }
 }

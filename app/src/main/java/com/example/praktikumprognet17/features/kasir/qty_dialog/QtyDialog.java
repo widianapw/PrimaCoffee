@@ -9,12 +9,15 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.room.Room;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -30,6 +33,8 @@ import com.example.praktikumprognet17.MainActivity;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
+import com.example.praktikumprognet17.database.KeranjangAppDatabase;
+import com.example.praktikumprognet17.database.entity.Keranjang;
 import com.example.praktikumprognet17.features.kasir.KasirFragment;
 import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickListener;
 import com.example.praktikumprognet17.features.setting.SettingFragment;
@@ -49,6 +54,7 @@ public class QtyDialog extends DialogFragment {
     BaseApiService mApiService;
     int qty;
     private EditText etQty;
+    private KeranjangAppDatabase database;
     private OnItemClickListener listener;
     final Fragment fragment1 = new KasirFragment();
     View mView;
@@ -57,8 +63,6 @@ public class QtyDialog extends DialogFragment {
         mContext = context;
         mView = view;
     }
-
-
 
     @NonNull
     @Override
@@ -73,18 +77,29 @@ public class QtyDialog extends DialogFragment {
         String nama = mArgs.getString("nama");
         View v = inflater.inflate(R.layout.activity_qty_dialog, null);
         etQty = v.findViewById(R.id.qtyItem);
-//        etQty.requestFocus();
 
-        // Pass null as the parent view because its going in the dialog layout
+        database = Room.databaseBuilder(
+                getContext(),
+                KeranjangAppDatabase.class,
+                "rest_api") //Nama File Database yang akan disimpan
+                .build();
+
+
         builder.setView(v)
                 // Add action buttons
                 .setMessage(nama)
                 .setPositiveButton(R.string.save, (dialog, id) -> {
                     qty = Integer.parseInt(etQty.getText().toString());
-                    int id_produk = mArgs.getInt("id");
-                    Log.e("id_produk", "" + id_produk);
+                    int id_produk1 = mArgs.getInt("id");
+//                    Keranjang data = new Keranjang();
+//                    data.setId_produk(id_produk1);
+//                    data.setQty(qty);
+//                    insertData(data);
+
+
+                    Log.e("id_produk", "" + id_produk1);
                     mApiService = UtilsApi.getAPIService();
-                    mApiService.keranjangRequest(id_produk, qty).enqueue(new Callback<ResponseBody>() {
+                    mApiService.keranjangRequest(id_produk1, qty).enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                             if (response.isSuccessful()) {
@@ -98,21 +113,8 @@ public class QtyDialog extends DialogFragment {
 //                                        args.putString("from","dialog");
 //                                        listener.onItemClicked(v,args);
 
-                                        Bundle data = new Bundle();
-                                        data.putString("from","dialog");
-                                        KasirFragment kasirFragment =  new KasirFragment();
-                                        kasirFragment.setArguments(data);
-
                                         mContext.loadDataProduk(mView);
 
-//                                        getActivity().getSupportFragmentManager()
-//                                                .beginTransaction()
-//                                                .replace(R.id.kasir_fragment, kasirFragment)
-//                                                .commit();
-
-//                                        Intent i = new Intent(requireContext(), MainActivity.class);
-//                                        startActivity(i);
-//                                                    QtyDialog.this.getDialog().cancel();
                                     } else {
                                         String error_message = jsonRESULTS.getString("error_msg");
                                         QtyDialog.this.getDialog().cancel();
@@ -140,6 +142,23 @@ public class QtyDialog extends DialogFragment {
                     }
                 });
         return builder.create();
+    }
+
+
+    @SuppressLint("StaticFieldLeak")private void insertData(final Keranjang keranjang) {
+        new AsyncTask<Void, Void, Long>() {
+            @Override
+            protected Long doInBackground(Void... voids) {
+                //Menjalankan proses insert data
+                return database.keranjangDAO().insert(keranjang);
+            }
+
+            @Override
+            protected void onPostExecute(Long status) {
+                //Menandakan bahwa data berhasil disimpan
+
+            }
+        }.execute();
     }
 
     @Nullable

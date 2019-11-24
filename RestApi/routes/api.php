@@ -20,6 +20,9 @@ Route::post('register', 'API\UserController@register');
 Route::resource('/kategori', 'API\KategoriController');
 Route::resource('/produk', 'API\ProdukController');
 Route::get('/getuser/{id}', 'API\UserController@getUser');
+Route::put('/updateProfile','API\UserController@updateProfile');
+Route::put('/updatePassword','API\UserController@updatePassword');
+Route::post('/insertTransaksi','API\KeranjangController@insertTransaksi');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('details', 'API\UserController@details');
 });

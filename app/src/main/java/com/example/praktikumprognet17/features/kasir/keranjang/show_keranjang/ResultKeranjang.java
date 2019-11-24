@@ -5,6 +5,11 @@ public class ResultKeranjang {
     int qty;
     String nama_produk;
     int harga;
+    int harga_total;
+
+    public int getHarga_total() {
+        return harga_total;
+    }
 
     public int getId() {
         return id;

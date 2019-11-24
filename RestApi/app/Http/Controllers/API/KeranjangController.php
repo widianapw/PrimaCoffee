@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use App\DetTransaksi;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Keranjang;
+use App\Transaksi;
+use DB;
+
 class KeranjangController extends Controller
 {
     public $successStatus = 200;
@@ -23,7 +26,10 @@ class KeranjangController extends Controller
         $keranjang = Keranjang::select('tb_keranjang.id','tb_keranjang.id_produk','nama_produk','harga','qty')
             ->join('tb_produk','tb_keranjang.id_produk','=','tb_produk.id')
             ->get();
-        return array("result"=>$keranjang);
+        $harga_keranjang = Keranjang::select(DB::raw('COALESCE (SUM(harga*qty),0) as harga_total'))
+            ->join('tb_produk','tb_keranjang.id_produk','=','tb_produk.id')
+            ->get();
+        return array("result"=>$keranjang, "harga_keranjang"=>$harga_keranjang);
     }
 
     /**
@@ -96,8 +102,15 @@ class KeranjangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $keranjang = Keranjang::where('id',$id)->first();
+        $keranjang->qty = $request->qty;
+        $keranjang->update();
+        return $keranjang;
+    }
+
+    public function updateKeranjang(Request $request){
+
     }
 
     /**
@@ -108,6 +121,29 @@ class KeranjangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Keranjang::find($id)->delete();
+        $keranjang = Keranjang::select('tb_keranjang.id','tb_keranjang.id_produk','nama_produk','harga','qty')
+            ->join('tb_produk','tb_keranjang.id_produk','=','tb_produk.id')
+            ->get();
+        return array("status"=>true,"result"=>$keranjang);        
+    }
+
+    public function insertTransaksi(request $request){
+        $transaksi = new Transaksi;
+        $transaksi->id_user = $request->id_user;
+        $transaksi->save();
+
+        $keranjang = Keranjang::get();
+        // return $keranjang;
+        foreach($keranjang as $k){
+            $detail = new DetTransaksi;
+            $detail->id_transaksi = $transaksi->id;
+            $detail->id_produk = $k->id_produk;
+            $detail->qty = $k->qty;
+            $detail->save();
+        }
+        
+        Keranjang::truncate();
+        return $keranjang;
     }
 }
