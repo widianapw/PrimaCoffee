@@ -9,24 +9,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import androidx.fragment.app.DialogFragment;
-import androidx.room.Room;
 
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-import com.example.praktikumprognet17.database.KeranjangAppDatabase;
-import com.example.praktikumprognet17.database.entity.Keranjang;
 import com.example.praktikumprognet17.features.kasir.keranjang.bayar_keranjang.KeranjangBayar;
 import com.example.praktikumprognet17.features.kasir.keranjang.edit_keranjang.EditQtyDialog;
 import com.example.praktikumprognet17.util.Connectivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class KeranjangActivity extends AppCompatActivity implements OnItemEditClickListener{
     RecyclerView recyclerView, recyclerKeranjang;
     BaseApiService mApiService;
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
     private List<ResultKeranjang> results = new ArrayList<>();
 
     private KeranjangRecyclerViewAdapter viewAdapter;
@@ -50,17 +43,7 @@ public class KeranjangActivity extends AppCompatActivity implements OnItemEditCl
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_keranjang);
-//        daftarKeranjang = new ArrayList<>();
-//        //Inisialisasi RoomDatabase
-//        database = Room.databaseBuilder(getApplicationContext(),
-//                KeranjangAppDatabase.class, "rest_api").allowMainThreadQueries().build();
-
-//        cm = new Connectivity();
-//        if(cm.isConnected(this)){
-//            loadDataKeranjang();
-//        }
         loadDataKeranjang();
-
         Button btnBayar = findViewById(R.id.button_bayar);
         btnBayar.setOnClickListener(v -> {
             Intent i = new Intent(this, KeranjangBayar.class);

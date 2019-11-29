@@ -1,11 +1,41 @@
 package com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang;
 
+
 public class ResultKeranjang {
     int id;
+    int id_produk;
     int qty;
     String nama_produk;
     int harga;
+    String created_at;
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
     int harga_total;
+
+//    Date created_at;
+//
+//    public Date getCreated_at() {
+//        return created_at;
+//    }
+//
+//    public void setCreated_at(Date created_at) {
+//        this.created_at = created_at;
+//    }
+
+    public int getId_produk() {
+        return id_produk;
+    }
+
+    public void setId_produk(int id_produk) {
+        this.id_produk = id_produk;
+    }
 
     public int getHarga_total() {
         return harga_total;
@@ -42,4 +72,5 @@ public class ResultKeranjang {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
 }

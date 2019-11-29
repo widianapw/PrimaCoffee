@@ -1,35 +1,23 @@
 package com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-import com.example.praktikumprognet17.database.KeranjangAppDatabase;
-import com.example.praktikumprognet17.database.entity.Keranjang;
-import com.example.praktikumprognet17.features.kasir.keranjang.edit_keranjang.EditQtyDialog;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,13 +33,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<KeranjangRecyclerViewAdapter.ViewHolder> {
     Context context;
     List<ResultKeranjang> results;
-    private ArrayList<Keranjang> daftarKeranjang;
+
 
     BaseApiService mApiService;
     private LinearLayout layout_keranjang;
     public static final String URL = "http://10.0.2.2:8000/api/";
     OnItemEditClickListener listener;
-    KeranjangAppDatabase database;
+
 
 
 

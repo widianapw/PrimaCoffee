@@ -2,6 +2,7 @@ package com.example.praktikumprognet17.apihelper;
 
 import android.content.Intent;
 
+import com.example.praktikumprognet17.features.home.show_home.ValueReport;
 import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.ValueKeranjang;
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
 import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ValueKategori;
@@ -67,4 +68,7 @@ public interface BaseApiService {
     @FormUrlEncoded
     @POST("insertTransaksi")
     Call<ResponseBody> insertTransaksi(@Field("id_user") int id_user);
+
+    @GET("produkTerlaris")
+    Call<ValueReport> getTerlaris();
 }

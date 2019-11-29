@@ -6,6 +6,11 @@
         android:title="Kasir" />
 
     <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/kasir2"
+        android:title="Home" />
+
+    <item
         android:id="@+id/navigation_setting"
         android:icon="@drawable/user"
         android:title="Setting" />

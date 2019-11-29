@@ -4,40 +4,24 @@ package com.example.praktikumprognet17.features.kasir.qty_dialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.room.Room;
 
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.praktikumprognet17.LoginActivity;
-import com.example.praktikumprognet17.MainActivity;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-import com.example.praktikumprognet17.database.KeranjangAppDatabase;
-import com.example.praktikumprognet17.database.entity.Keranjang;
 import com.example.praktikumprognet17.features.kasir.KasirFragment;
 import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickListener;
-import com.example.praktikumprognet17.features.setting.SettingFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +38,7 @@ public class QtyDialog extends DialogFragment {
     BaseApiService mApiService;
     int qty;
     private EditText etQty;
-    private KeranjangAppDatabase database;
+
     private OnItemClickListener listener;
     final Fragment fragment1 = new KasirFragment();
     View mView;
@@ -78,11 +62,12 @@ public class QtyDialog extends DialogFragment {
         View v = inflater.inflate(R.layout.activity_qty_dialog, null);
         etQty = v.findViewById(R.id.qtyItem);
 
-        database = Room.databaseBuilder(
-                getContext(),
-                KeranjangAppDatabase.class,
-                "rest_api") //Nama File Database yang akan disimpan
-                .build();
+
+//        database = Room.databaseBuilder(
+//                getContext(),
+//                KeranjangAppDatabase.class,
+//                "rest_api") //Nama File Database yang akan disimpan
+//                .build();
 
 
         builder.setView(v)
@@ -91,10 +76,7 @@ public class QtyDialog extends DialogFragment {
                 .setPositiveButton(R.string.save, (dialog, id) -> {
                     qty = Integer.parseInt(etQty.getText().toString());
                     int id_produk1 = mArgs.getInt("id");
-//                    Keranjang data = new Keranjang();
-//                    data.setId_produk(id_produk1);
-//                    data.setQty(qty);
-//                    insertData(data);
+
 
 
                     Log.e("id_produk", "" + id_produk1);
@@ -145,21 +127,7 @@ public class QtyDialog extends DialogFragment {
     }
 
 
-    @SuppressLint("StaticFieldLeak")private void insertData(final Keranjang keranjang) {
-        new AsyncTask<Void, Void, Long>() {
-            @Override
-            protected Long doInBackground(Void... voids) {
-                //Menjalankan proses insert data
-                return database.keranjangDAO().insert(keranjang);
-            }
 
-            @Override
-            protected void onPostExecute(Long status) {
-                //Menandakan bahwa data berhasil disimpan
-
-            }
-        }.execute();
-    }
 
     @Nullable
     @Override
