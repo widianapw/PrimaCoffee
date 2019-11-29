@@ -5,7 +5,6 @@ import android.content.Intent;
 import com.example.praktikumprognet17.features.home.show_home.ValueReport;
 import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.ValueKeranjang;
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
-import com.example.praktikumprognet17.features.kategori_crud.show_kategori.ValueKategori;
 import com.example.praktikumprognet17.features.setting.edit_profil.ValueUser;
 
 import okhttp3.ResponseBody;
@@ -33,8 +32,8 @@ public interface BaseApiService {
                                        @Field("password") String password,
                                        @Field("c_password") String c_password);
 
-    @GET("kategori/")
-    Call<ValueKategori> view();
+//    @GET("kategori/")
+//    Call<ValueKategori> view();
 
     @GET("produk/")
     Call<ValueProduk> viewProduk();

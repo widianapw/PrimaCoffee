@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-import com.example.praktikumprognet17.features.kategori_crud.show_kategori.KategoriList;
+//import com.example.praktikumprognet17.features.kategori_crud.show_kategori.KategoriList;
 import com.example.praktikumprognet17.util.Connectivity;
 
 import org.json.JSONException;
