@@ -21,16 +21,12 @@ import com.example.praktikumprognet17.MainActivity;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-import com.example.praktikumprognet17.database.ReportAppDatabase;
+import com.example.praktikumprognet17.database.AppDatabase;
 import com.example.praktikumprognet17.database.entity.Report;
-import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangRecyclerViewAdapter;
 import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.ResultKeranjang;
 import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.ValueKeranjang;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -42,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class KeranjangBayar extends AppCompatActivity {
     BaseApiService mApiService;
-    ReportAppDatabase database;
+    AppDatabase database;
     final String SHARED_PREFERENCES_NAME = "shared_preferences";
     public final static int ID_USER = 0;
     int harga_keranjang;
@@ -54,7 +50,7 @@ public class KeranjangBayar extends AppCompatActivity {
         setContentView(R.layout.activity_keranjang_bayar);
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         int id_user = sharedPreferences.getInt(String.valueOf(ID_USER), 0);
-        database = ReportAppDatabase.getDatabase(this);
+        database = AppDatabase.getDatabase(this);
 
         Button btnBayarFinal = findViewById(R.id.button_bayar_final);
         EditText etUang = findViewById(R.id.etUang);

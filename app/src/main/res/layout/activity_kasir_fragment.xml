@@ -37,74 +37,92 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/cardview_light_background"
-            app:cardCornerRadius="15dp">
+            android:backgroundTint="@color/cardview_light_background">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:layout_marginStart="5dp"
                     android:id="@+id/labelJumlah"
+                    android:layout_marginTop="@dimen/spacing_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
                     android:text="Jumlah Item (QTY) : "
+                    android:textColor="@color/overlay_dark_80"
+                    android:textStyle="bold"
                     android:textSize="7pt"></TextView>
 
                 <TextView
                     android:id="@+id/qty"
+                    android:layout_marginTop="@dimen/spacing_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/labelJumlah"
                     android:fontFamily="sans-serif-black"
                     android:text="2"
+                    android:textStyle="bold"
+                    android:textColor="@color/overlay_dark_80"
                     android:textSize="7pt"></TextView>
 
                 <TextView
                     android:id="@+id/labelHarga"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/labelJumlah"
                     android:fontFamily="sans-serif-black"
                     android:text="Total Harga : "
+                    android:textColor="@color/overlay_dark_80"
                     android:textSize="7pt"></TextView>
 
                 <TextView
+                    android:layout_marginTop="@dimen/spacing_small"
                     android:id="@+id/total_harga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/qty"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="7dp"
                     android:layout_toRightOf="@id/labelHarga"
                     android:fontFamily="sans-serif-black"
                     android:text="Rp.60.000"
+                    android:textColor="@color/gold_100"
                     android:textSize="7pt"></TextView>
 
-<!--                <Button-->
-<!--                    android:id="@+id/cetak_struk"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@+id/total_harga"-->
-<!--                    android:layout_alignParentRight="true"-->
-<!--                    android:backgroundTint="@color/register"-->
-<!--                    android:fontFamily="sans-serif-black"-->
-<!--                    android:text="Cetak Struk Pembayaran"-->
-<!--                    android:textColor="@color/cardview_light_background"-->
-<!--                    android:textSize="9dp"></Button>-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/cetak_struk"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_below="@+id/total_harga"-->
+                <!--                    android:layout_alignParentRight="true"-->
+                <!--                    android:backgroundTint="@color/register"-->
+                <!--                    android:fontFamily="sans-serif-black"-->
+                <!--                    android:text="Cetak Struk Pembayaran"-->
+                <!--                    android:textColor="@color/cardview_light_background"-->
+                <!--                    android:textSize="9dp"></Button>-->
 
                 <Button
                     android:id="@+id/button_detail_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:layout_marginBottom="@dimen/spacing_small"
                     android:layout_below="@+id/total_harga"
                     android:layout_alignParentLeft="true"
-                    android:backgroundTint="@color/register"
-                    android:fontFamily="sans-serif-black"
-                    android:text="Detail Item"
-                    android:textColor="@color/cardview_light_background"
-                    android:textSize="9dp"></Button>
+                    android:background="@drawable/btn_rounded_green_300"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_grey_900"
+                    android:text="Detail Item">
+
+                </Button>
+
             </RelativeLayout>
+
 
 
         </androidx.cardview.widget.CardView>

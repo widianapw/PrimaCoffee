@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,9 +40,6 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
     private LinearLayout layout_keranjang;
     public static final String URL = "http://10.0.2.2:8000/api/";
     OnItemEditClickListener listener;
-
-
-
 
     public KeranjangRecyclerViewAdapter(Context context, List<ResultKeranjang> results, OnItemEditClickListener listener) {
         this.listener = listener;
@@ -126,10 +124,10 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         TextView textViewSubtotalKeranjang;
 
         @BindView(R.id.button_delete_keranjang)
-        Button btnDeleteKeranjang;
+        ImageButton btnDeleteKeranjang;
 
         @BindView(R.id.button_edit_keranjang)
-        Button btnEditKeranjang;
+        ImageButton btnEditKeranjang;
 
         RelativeLayout parentLayout;
 

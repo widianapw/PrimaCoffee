@@ -13,16 +13,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:layout_marginStart="10dp"
             android:id="@+id/labellUang"
+            android:textSize="8pt"
+            android:textStyle="bold"
+            android:textColor="@color/overlay_dark_80"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Uang :"/>
-        <EditText
+
+
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etUang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/label_email"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginRight="-4dp"
             android:inputType="number"
-            />
+            android:maxLength="50"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/cardview_light_background"
+            android:theme="@style/EditText.Gold"></androidx.appcompat.widget.AppCompatEditText>
+
     </LinearLayout>
 
     <LinearLayout
@@ -31,39 +45,61 @@
         android:layout_height="wrap_content"
         >
         <TextView
+            android:layout_marginStart="10dp"
             android:id="@+id/labelTotalBelanja"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Belanja"/>
+            android:textSize="7pt"
+            android:textStyle="bold"
+            android:textColor="@color/overlay_dark_80"
+            android:text="Total Belanja : "/>
 
         <TextView
             android:id="@+id/tv_total_belanja"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/gold_100"
+            android:textStyle="bold"
+            android:textSize="7pt"
             android:text="Rp 100">
         </TextView>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kembalian"/>
+            android:text="Kembalian : "
+            android:textStyle="bold"
+            android:textSize="7pt"
+            android:textColor="@color/overlay_dark_80"/>
         <TextView
+            android:textColor="@color/gold_100"
+            android:textSize="7pt"
+            android:textStyle="bold"
             android:id="@+id/tv_uang_kembalian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="rp 100"></TextView>
+            android:text="Rp 100"></TextView>
     </LinearLayout>
 
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/button_bayar_final"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bayar"/>
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginRight="-4dp"
+        android:background="@drawable/btn_rounded_green_300"
+        android:text="Bayar"
+        android:textAllCaps="false"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/blue_grey_900" />
 
 
 </LinearLayout>

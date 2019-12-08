@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
@@ -28,9 +27,6 @@ import com.example.praktikumprognet17.features.kasir.show_produk.OnItemClickList
 import com.example.praktikumprognet17.features.kasir.show_produk.ProdukRecyclerViewAdapter;
 import com.example.praktikumprognet17.features.kasir.show_produk.ResultProduk;
 import com.example.praktikumprognet17.features.kasir.show_produk.ValueProduk;
-import com.example.praktikumprognet17.features.setting.edit_profil.UserProfile;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +37,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.content.ContentValues.TAG;
 
 public class KasirFragment extends Fragment implements OnItemClickListener {
     public static final String URL = "http://10.0.2.2:8000/api/";

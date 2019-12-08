@@ -35,7 +35,7 @@ public class ReportTahunRecyclerViewAdapter extends RecyclerView.Adapter<ReportT
         String getJumlah = String.valueOf(mDaftarReportTahun.get(position).getTotal());
 
         holder.bulan.setText(getBulan);
-        holder.jumlah.setText(getJumlah);
+        holder.jumlah.setText("Rp "+getJumlah);
 
     }
 

@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.praktikumprognet17.R;
-import com.example.praktikumprognet17.features.kasir.qty_dialog.QtyDialog;
 
 import java.util.List;
 
@@ -25,6 +24,8 @@ public class ProdukRecyclerViewAdapter extends RecyclerView.Adapter<ProdukRecycl
     private List<ResultProduk> results;
     private OnItemClickListener listener;
 
+
+
     public ProdukRecyclerViewAdapter(Context context, List<ResultProduk> results, OnItemClickListener listener) {
         this.listener = listener;
         this.context = context;
@@ -35,7 +36,7 @@ public class ProdukRecyclerViewAdapter extends RecyclerView.Adapter<ProdukRecycl
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kasir, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_kasir, parent, false);
         ProdukRecyclerViewAdapter.ViewHolder holder = new ProdukRecyclerViewAdapter.ViewHolder(v);
         return holder;
     }

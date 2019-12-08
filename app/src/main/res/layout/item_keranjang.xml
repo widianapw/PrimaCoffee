@@ -1,33 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_keranjang"
-    android:layout_width="match_parent"
+    android:layout_width="380dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/cardview_light_background"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp">
 
 
     <TextView
+        android:layout_marginStart="12dp"
         android:id="@+id/nama_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="nama_produk"></TextView>
+        android:text="nama_produk"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:textColor="@color/overlay_dark_80"
+        android:textSize="7pt"
+        ></TextView>
+
+    <ImageView
+        android:layout_below="@+id/nama_keranjang"
+        android:id="@+id/garis"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/overlay_dark_30"></ImageView>
 
     <TextView
-
         android:id="@+id/harga_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="1dp"
         android:layout_toRightOf="@+id/nama_keranjang"
         android:padding="5dp"
-        android:text="harga"></TextView>
+        android:text="harga"
+        android:textSize="6pt"
+        android:textColor="@color/gold_100"
+        android:textStyle="bold"></TextView>
 
     <TextView
         android:id="@+id/x"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/harga_keranjang"
         android:padding="5dp"
+        android:textSize="5pt"
+        android:textColor="@color/overlay_dark_80"
+        android:layout_centerVertical="true"
         android:text="x" />
 
     <TextView
@@ -37,30 +61,57 @@
         android:layout_toRightOf="@+id/x"
         android:padding="5dp"
         android:text="qty"
-
+        android:textSize="6pt"
+        android:textColor="@color/overlay_dark_80"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
         />
+
+
+    <TextView
+        android:id="@+id/samadengan"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/qty_keranjang"
+        android:padding="5dp"
+        android:textSize="5pt"
+        android:textColor="@color/overlay_dark_80"
+        android:layout_centerVertical="true"
+        android:text="=" />
+
 
     <TextView
         android:id="@+id/subtotal_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/qty_keranjang"
+        android:layout_toRightOf="@id/samadengan"
+        android:layout_centerVertical="true"
+        android:textSize="7pt"
+        android:textColor="@color/overlay_dark_80"
+        android:textStyle="bold"
         android:padding="5dp"
         android:text="Total" />
 
 
-    <Button
+    <ImageButton
         android:id="@+id/button_edit_keranjang"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:background="@drawable/edit"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/subtotal_keranjang"
         android:text="Edit" />
 
-    <Button
+    <ImageButton
+        android:background="@drawable/trash"
         android:id="@+id/button_delete_keranjang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_width="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@+id/button_edit_keranjang"
+
         android:text="x" />
 </RelativeLayout>

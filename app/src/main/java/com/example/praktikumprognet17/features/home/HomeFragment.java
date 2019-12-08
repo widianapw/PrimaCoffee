@@ -2,26 +2,20 @@ package com.example.praktikumprognet17.features.home;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
-import com.example.praktikumprognet17.apihelper.UtilsApi;
 import com.example.praktikumprognet17.dao.ReportDAO;
+import com.example.praktikumprognet17.database.AppDatabase;
 import com.example.praktikumprognet17.database.AppExecutors;
-import com.example.praktikumprognet17.database.ReportAppDatabase;
-import com.example.praktikumprognet17.database.entity.Report;
-import com.example.praktikumprognet17.database.entity.Terlaris;
 import com.example.praktikumprognet17.features.home.show_home.ReportTahunRecyclerViewAdapter;
 import com.example.praktikumprognet17.features.home.show_home.ResultReport;
 import com.example.praktikumprognet17.features.home.show_home.TerlarisRecyclerViewAdapter;
@@ -32,10 +26,10 @@ import java.util.List;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView recyclerView;
-    private ReportAppDatabase mDb;
+    private AppDatabase mDb;
     private RecyclerView.LayoutManager layoutManager;
-//    private RecyclerView.Adapter adapter;
-    private ArrayList<Terlaris> daftarTerlaris;
+    //    private RecyclerView.Adapter adapter;
+    private ArrayList<ReportDAO.Terlaris> daftarTerlaris;
 
     private List<ResultReport> results = new ArrayList<>();
     public static final String URL = "http://10.0.2.2:8000/api/";
@@ -89,7 +83,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mAdapterTahun = new ReportTahunRecyclerViewAdapter(getContext());
         recyclerView.setAdapter(mAdapter);
         recyclerViewReport.setAdapter(mAdapterTahun);
-        mDb = ReportAppDatabase.getDatabase(getContext());
+        mDb = AppDatabase.getDatabase(getContext());
+//        retrieveData();
         return mView;
 
     }
@@ -108,10 +103,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void retrieveData() {
         AppExecutors.getInstance().diskIO().execute(() -> {
-            final List<Terlaris> data = mDb.reportDAO().readDataTerlaris();
-            mAdapter.setTasks(data);
-            final List<ReportDAO.ReportTahun> data1 = mDb.reportDAO().reportTahun();
-            mAdapterTahun.setTasksReport(data1);
+
+
+                final List<ReportDAO.Terlaris> data = mDb.reportDAO().readDataTerlaris();
+                mAdapter.setTasks(data);
+                final List<ReportDAO.ReportTahun> data1 = mDb.reportDAO().reportTahun();
+                mAdapterTahun.setTasksReport(data1);
+
         });
     }
 }

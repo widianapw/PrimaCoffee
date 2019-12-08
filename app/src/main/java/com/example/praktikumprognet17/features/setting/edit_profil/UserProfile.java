@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -92,7 +90,6 @@ public class UserProfile extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     Log.e("BERHASIL", "DATA BERHASIL DIUPDATE");
                     finish();
-
                 }
 
                 @Override
@@ -109,7 +106,7 @@ public class UserProfile extends AppCompatActivity {
     private void initComponents() {
 
 
-        Button btnEditPass = findViewById(R.id.btnEditPass);
+        TextView btnEditPass = findViewById(R.id.btnEditPass);
         btnEditPass.setOnClickListener(v -> {
             Intent i = new Intent(this, EditPassword.class);
             startActivity(i);

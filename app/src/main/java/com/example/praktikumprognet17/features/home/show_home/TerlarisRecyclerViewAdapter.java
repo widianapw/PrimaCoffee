@@ -11,17 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.dao.ReportDAO;
-import com.example.praktikumprognet17.database.ReportAppDatabase;
-import com.example.praktikumprognet17.database.entity.Report;
-import com.example.praktikumprognet17.database.entity.Terlaris;
+import com.example.praktikumprognet17.database.AppDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TerlarisRecyclerViewAdapter extends RecyclerView.Adapter<TerlarisRecyclerViewAdapter.ViewHolder> {
 
-    private List<Terlaris> mDaftarTerlaris;
-    private ReportAppDatabase reportAppDatabase;
+    private List<ReportDAO.Terlaris> mDaftarTerlaris;
+    private AppDatabase appDatabase;
 
 
     Context context;
@@ -71,7 +68,7 @@ public class TerlarisRecyclerViewAdapter extends RecyclerView.Adapter<TerlarisRe
 
     }
 
-    public void setTasks(List<Terlaris> daftarTerlaris) {
+    public void setTasks(List<ReportDAO.Terlaris> daftarTerlaris) {
         mDaftarTerlaris = daftarTerlaris;
         notifyDataSetChanged();
     }

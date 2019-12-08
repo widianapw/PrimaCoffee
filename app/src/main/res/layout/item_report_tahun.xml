@@ -5,20 +5,29 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp">
 
-    <TextView
-        android:id="@+id/bulan_report_tahun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="Bulan"></TextView>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/bulan_report_tahun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:id="@+id/jumlah_report_tahun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/bulan_report_tahun"
-        android:padding="5dp"
-        android:text="jumlah"></TextView>
+            android:text="Bulan"></TextView>
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/jumlah_report_tahun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/bulan_report_tahun"
+
+            android:textAlignment="center"
+            android:text="jumlah"></TextView>
+    </LinearLayout>
+
 
 </RelativeLayout>

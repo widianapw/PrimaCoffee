@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.example.praktikumprognet17.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,22 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".features.home.HomeFragment"></activity>
-        <activity android:name=".features.kasir.keranjang.bayar_keranjang.KeranjangBayar" />
-        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangActivity" />
-        <activity android:name=".features.kasir.keranjang.edit_keranjang.EditQtyDialog" />
-        <activity android:name=".Firebase"></activity>
-        <activity android:name=".features.kasir.qty_dialog.QtyDialog" />
-        <activity android:name=".features.setting.edit_profil.EditPassword" />
-        <activity android:name=".features.setting.edit_profil.UserProfile" />
-        <activity android:name=".features.setting.SettingFragment" />
-        <activity android:name=".features.kasir.KasirFragment" />
-        <activity android:name=".features.kategori_crud.show_kategori.KategoriList" />
-        <activity android:name=".KategoriActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.example.praktikumprognet17.features.home.HomeFragment" />
+        <activity android:name="com.example.praktikumprognet17.features.kasir.keranjang.bayar_keranjang.KeranjangBayar" />
+        <activity android:name="com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangActivity" />
+        <activity android:name="com.example.praktikumprognet17.features.kasir.keranjang.edit_keranjang.EditQtyDialog" />
+        <activity android:name="com.example.praktikumprognet17.Firebase" />
+        <activity android:name="com.example.praktikumprognet17.features.kasir.qty_dialog.QtyDialog" />
+        <activity android:name="com.example.praktikumprognet17.features.setting.edit_profil.EditPassword" />
+        <activity android:name="com.example.praktikumprognet17.features.setting.edit_profil.UserProfile" />
+        <activity android:name="com.example.praktikumprognet17.features.setting.SettingFragment" />
+        <activity android:name="com.example.praktikumprognet17.features.kasir.KasirFragment" />
+        <activity android:name="com.example.praktikumprognet17.RegisterActivity" />
+        <activity android:name="com.example.praktikumprognet17.MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.praktikumprognet17.LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +38,7 @@
 
         <service
             android:name=".MyFirebaseMessagingService"
-            android:exported="false">
+            >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

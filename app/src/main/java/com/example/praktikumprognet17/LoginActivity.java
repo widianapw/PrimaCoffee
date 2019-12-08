@@ -38,14 +38,15 @@ public class LoginActivity extends AppCompatActivity {
 
     Context mContext;
     BaseApiService mApiService;
+    String token;
+
     SharedPreferences sharedPreferences;
     boolean session = false;
-    String token;
     int id_user;
     final String SHARED_PREFERENCES_NAME = "shared_preferences";
     final String SESSION_STATUS = "session";
-    public final static String TAG_TOKEN = "token";
     final int ID_USER = 0;
+    public final static String TAG_TOKEN = "token";
     Connectivity cm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         mApiService = UtilsApi.getAPIService(); // meng-init yang ada di package apihelper
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         session = sharedPreferences.getBoolean(SESSION_STATUS, false);
-        token = sharedPreferences.getString(TAG_TOKEN, null);
         id_user = sharedPreferences.getInt(String.valueOf(ID_USER),0);
+
+        token = sharedPreferences.getString(TAG_TOKEN, null);
         cm = new Connectivity();
         if(cm.isConnected(this)){
             Toast.makeText(mContext, "TERKONEKSI", Toast.LENGTH_SHORT).show();

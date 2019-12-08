@@ -1,15 +1,11 @@
 package com.example.praktikumprognet17;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 
 import com.example.praktikumprognet17.features.home.HomeFragment;
 import com.example.praktikumprognet17.features.kasir.KasirFragment;
@@ -21,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment fragment2 = new SettingFragment();
     final Fragment fragment3 = new HomeFragment();
     final FragmentManager fm = getSupportFragmentManager();
-    Fragment active;
+    Fragment active = fragment1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (extras != null) {
             if (extras.getString("objek") != null) {
-                fm.beginTransaction().add(R.id.main_container, fragment1, "1").hide(fragment1).commit();
+                fm.beginTransaction().add(R.id.main_container, fragment1, "1").commit();
                 fm.beginTransaction().add(R.id.main_container, fragment3, "3").hide(fragment3).commit();
-                fm.beginTransaction().add(R.id.main_container, fragment2, "2").commit();
+                fm.beginTransaction().add(R.id.main_container, fragment2, "2").hide(fragment2).commit();
                 active = fragment2;
             } else {
                 fm.beginTransaction().add(R.id.main_container, fragment1, "1").commit();

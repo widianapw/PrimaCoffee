@@ -2,7 +2,6 @@ package com.example.praktikumprognet17.features.setting;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.praktikumprognet17.LoginActivity;
@@ -22,8 +20,6 @@ import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
 import com.example.praktikumprognet17.features.setting.edit_profil.UserProfile;
 import com.example.praktikumprognet17.features.setting.edit_profil.ValueUser;
-
-import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,6 +88,9 @@ public class SettingFragment extends Fragment {
 
                 TextView email = mView.findViewById(R.id.email);
                 email.setText(response.body().getEmail());
+
+                TextView namaLengkap = mView.findViewById(R.id.nama_lengkap);
+                namaLengkap.setText(response.body().getName());
             }
 
             @Override

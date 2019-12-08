@@ -1,44 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.setting.SettingFragment"
     android:layout_margin="20dp"
-    >
+    android:background="@color/cardview_light_background"
+    tools:context=".features.setting.SettingFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="@color/cardview_light_background">
+
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/my_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="email"/>
-        <TextView
-            android:id="@+id/username"
-            android:layout_below="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="USERNAME">
-        </TextView>
-        <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/btnEditProfil"
-            android:layout_below="@+id/username"
-            android:text="Edit Profil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Button>
-        <Button
-            android:id="@+id/button_logoutMain"
-            android:layout_below="@+id/btnEditProfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Log Out" />
-    </RelativeLayout>
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="15dp"
+            android:text="My Profile"
+            android:textColor="@color/overlay_dark_80"
+            android:textSize="8pt"
+            android:textStyle="bold"></TextView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@+id/my_profile">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/gambar_profil"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/fotokopi" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/username"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Widiana@gmail.com"
+                    android:textColor="@color/overlay_dark_30"
+                    android:textSize="8pt"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="20dp"
+                    android:text="Widiana"
+                    android:textColor="@color/overlay_dark_80"
+                    android:textSize="12pt"
+                    android:textStyle="bold"></TextView>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/garis"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="175dp"
+            android:background="@color/overlay_dark_30"></ImageView>
+
+        <ImageView
+            android:id="@+id/foto_user"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/garis"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user"></ImageView>
+
+
+        <TextView
+            android:id="@+id/tag_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/garis"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/foto_user"
+            android:text="Nama Lengkap"
+            android:textColor="@color/overlay_dark_80"
+            android:textSize="10pt"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/nama_lengkap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tag_nama"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/foto_user"
+            android:text="Widiana Putra W."
+            android:textColor="@color/overlay_dark_30"
+            android:textSize="8pt"
+            android:textStyle="bold"></TextView>
+
+        <ImageView
+            android:id="@+id/garis2"
+            android:layout_width="330dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/nama_lengkap"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="4dp"
+            android:background="@color/overlay_dark_10"></ImageView>
+
+
+        <ImageView
+            android:id="@+id/foto_employee"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/garis2"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/employee"></ImageView>
+
+
+        <TextView
+            android:id="@+id/tag_posisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/garis2"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/foto_employee"
+            android:text="Posisi"
+            android:textColor="@color/overlay_dark_80"
+            android:textSize="10pt"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/posisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tag_posisi"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/foto_employee"
+            android:text="Front Desk Cashier"
+            android:textColor="@color/overlay_dark_30"
+            android:textSize="8pt"
+            android:textStyle="bold"></TextView>
+
+        <ImageView
+            android:id="@+id/garis4"
+            android:layout_width="330dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/posisi"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="4dp"
+            android:background="@color/overlay_dark_10"></ImageView>
+
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            >
+
+            <Button
+                android:id="@+id/btnEditProfil"
+                android:layout_width="250dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="55dp"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:background="@drawable/btn_rounded_green_300"
+                android:text="Edit Profile"
+                android:textAllCaps="false"
+                android:textColor="@color/blue_grey_900" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/btnEditProfil"
+                android:id="@+id/button_logoutMain"
+                android:layout_width="250dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="55dp"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:background="@drawable/btn_rounded_green_100"
+                android:text="Log Out"
+                android:textAllCaps="false"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:layout_below="@id/button_logoutMain"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prima Coffee"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/overlay_dark_40" />
+
+        </RelativeLayout>
+    </RelativeLayout>
 
 
 </FrameLayout>
