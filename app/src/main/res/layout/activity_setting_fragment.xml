@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,10 @@
     android:layout_margin="20dp"
     android:background="@color/cardview_light_background"
     tools:context=".features.setting.SettingFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -111,14 +115,23 @@
             android:textSize="10pt"
             android:textStyle="bold"></TextView>
 
+        <ImageView
+            android:id="@+id/garis5"
+            android:layout_width="330dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/tag_nama"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:background="@color/overlay_dark_10"></ImageView>
+
         <TextView
             android:id="@+id/nama_lengkap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tag_nama"
+            android:layout_below="@id/garis5"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/foto_user"
             android:text="Widiana Putra W."
             android:textColor="@color/overlay_dark_30"
@@ -167,26 +180,17 @@
             android:layout_below="@id/tag_posisi"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/foto_employee"
             android:text="Front Desk Cashier"
             android:textColor="@color/overlay_dark_30"
             android:textSize="8pt"
             android:textStyle="bold"></TextView>
 
-        <ImageView
-            android:id="@+id/garis4"
-            android:layout_width="330dp"
-            android:layout_height="1dp"
-            android:layout_below="@id/posisi"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="4dp"
-            android:background="@color/overlay_dark_10"></ImageView>
 
         <RelativeLayout
-            android:layout_below="@+id/garis4"
-            android:layout_marginTop="100dp"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/posisi"
+            android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -218,21 +222,24 @@
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_light_background" />
 
-            <TextView
-                android:layout_below="@id/button_logoutMain"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:padding="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prima Coffee"
-                android:layout_marginTop="30dp"
-                android:textStyle="bold"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/overlay_dark_40" />
+
 
         </RelativeLayout>
     </RelativeLayout>
 
 
-</ScrollView>
+    </ScrollView>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prima Coffee"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/overlay_dark_40" />
+
+</RelativeLayout>

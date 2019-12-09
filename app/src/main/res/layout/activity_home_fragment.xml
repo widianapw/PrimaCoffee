@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/cardview_light_background"
     android:layout_height="match_parent"
     tools:context=".features.home.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:layout_margin="30dp"
         android:layout_width="match_parent"
@@ -182,22 +188,27 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ly_report" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prima Coffee"
-                android:layout_alignParentBottom="true"
-                android:textStyle="bold"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/overlay_dark_40"
-                android:layout_centerHorizontal="true"
-                />
 
         </RelativeLayout>
+
+
 
 
 
     </RelativeLayout>
 
 
-</ScrollView>
+    </ScrollView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Prima Coffee"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/overlay_dark_40"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
