@@ -8,24 +8,39 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.praktikumprognet17.Firebase;
 import com.example.praktikumprognet17.LoginActivity;
+import com.example.praktikumprognet17.MySingleton;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
 import com.example.praktikumprognet17.features.setting.edit_profil.UserProfile;
 import com.example.praktikumprognet17.features.setting.edit_profil.ValueUser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.android.volley.VolleyLog.TAG;
 
 
 public class SettingFragment extends Fragment {
@@ -40,6 +55,17 @@ public class SettingFragment extends Fragment {
     public final static int ID_USER = 0;
     BaseApiService mApiService;
     public static final String URL = UtilsApi.BASE_URL_API;
+
+    Firebase firebase;
+
+//    final private String FCM_API = "https://fcm.googleapis.com/fcm/send";
+//    final private String serverKey = "key=" + "AAAASmSliLo:APA91bE_L8amA2ht6jyWFudkg65YiV5dYbicOMSYzzvWUr9ziKxYiRTyGK1dIz00bH5M8Fl9W2u6oE-XWz-0wlg4vjJ-1d6eNB9ULheJnQxTigFM6N-ZQTMtx0qeCAgii7SH_K3slt8f";
+//    final private String contentType = "application/json";
+//    final String TAG = "NOTIFICATION TAG";
+//
+//    String NOTIFICATION_TITLE;
+//    String NOTIFICATION_MESSAGE;
+//    String TOPIC;
 
     @Nullable
     @Override

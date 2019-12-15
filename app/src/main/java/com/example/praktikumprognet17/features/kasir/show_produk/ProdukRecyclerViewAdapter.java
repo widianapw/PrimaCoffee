@@ -45,7 +45,7 @@ public class ProdukRecyclerViewAdapter extends RecyclerView.Adapter<ProdukRecycl
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ResultProduk result = results.get(position);
         holder.textViewNamaProduk.setText(result.getNama_produk());
-        holder.textViewHarga.setText(String.valueOf(result.getHarga()));
+        holder.textViewHarga.setText("Rp "+result.getHarga());
         holder.parentLayout.setOnClickListener(v ->{
             Bundle args = new Bundle();
             Log.e("id_produkk",""+result.getId());

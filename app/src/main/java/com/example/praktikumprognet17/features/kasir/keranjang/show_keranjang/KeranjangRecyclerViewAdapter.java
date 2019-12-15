@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,39 +67,57 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         totHarga = result.getHarga() * result.getQty();
         Log.e("as", "" + getItemCount());
         holder.textViewNamaKeranjang.setText(result.getNama_produk());
-        holder.textViewHargaKeranjang.setText(Integer.toString(result.getHarga()));
+        holder.textViewHargaKeranjang.setText("Rp "+ result.getHarga());
         holder.textViewQtyKeranjang.setText(Integer.toString(result.getQty()));
         holder.textViewSubtotalKeranjang.setText(Integer.toString(totHarga));
         holder.btnEditKeranjang.setOnClickListener(v -> {
-            Log.e("AS1J", result.getId()+"");
+            Log.e("AS1J", result.getId() + "");
             Bundle args = new Bundle();
-            args.putInt("id",result.getId());
+            args.putInt("id", result.getId());
             args.putString("nama", result.getNama_produk());
-            args.putInt("qty",result.getQty());
-            listener.onItemClicked(v,args);
+            args.putInt("qty", result.getQty());
+            listener.onItemClicked(v, args);
         });
 
         holder.btnDeleteKeranjang.setOnClickListener(v -> {
-            Log.e("ASJ", result.getId()+"");
+            Log.e("ASJ", result.getId() + "");
             mApiService = UtilsApi.getAPIService();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             BaseApiService api = retrofit.create(BaseApiService.class);
-            Call<ResponseBody> call = api.deleteKeranjang(result.getId());
-            call.enqueue(new Callback<ResponseBody>() {
+            final SweetAlertDialog sDialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
+            sDialog.setTitle("Hapus Data");
+            sDialog.setContentText("Ingin menghapus data " + result.getNama_produk() + " ?");
+            sDialog.setConfirmButton("Ya", new SweetAlertDialog.OnSweetClickListener() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    results.remove(position);
-                    notifyDataSetChanged();
-                }
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                    Call<ResponseBody> call = api.deleteKeranjang(result.getId());
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            results.remove(position);
+                            notifyDataSetChanged();
+                        }
 
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                        }
+                    });
+                    sDialog.dismissWithAnimation();
                 }
             });
+            sDialog.setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                    sDialog.dismissWithAnimation();
+                }
+            });
+            sDialog.show();
+
         });
 
     }

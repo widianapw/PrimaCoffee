@@ -1,33 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.praktikumprognet17">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <application
-        android:name="com.example.praktikumprognet17.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name="com.example.praktikumprognet17.features.home.HomeFragment" />
-        <activity android:name="com.example.praktikumprognet17.features.kasir.keranjang.bayar_keranjang.KeranjangBayar" />
-        <activity android:name="com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.KeranjangActivity" />
-        <activity android:name="com.example.praktikumprognet17.features.kasir.keranjang.edit_keranjang.EditQtyDialog" />
-        <activity android:name="com.example.praktikumprognet17.Firebase" />
-        <activity android:name="com.example.praktikumprognet17.features.kasir.qty_dialog.QtyDialog" />
-        <activity android:name="com.example.praktikumprognet17.features.setting.edit_profil.EditPassword" />
-        <activity android:name="com.example.praktikumprognet17.features.setting.edit_profil.UserProfile" />
-        <activity android:name="com.example.praktikumprognet17.features.setting.SettingFragment" />
-        <activity android:name="com.example.praktikumprognet17.features.kasir.KasirFragment" />
-        <activity android:name="com.example.praktikumprognet17.RegisterActivity" />
-        <activity android:name="com.example.praktikumprognet17.MainActivity" />
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon,android:theme">
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".Firebase">
+
+        </activity>
+        <activity android:name=".features.home.HomeFragment" />
+        <activity android:name=".features.kasir.keranjang.bayar_keranjang.KeranjangBayar" />
+        <activity android:name=".features.kasir.keranjang.show_keranjang.KeranjangActivity" />
+        <activity android:name=".features.kasir.keranjang.edit_keranjang.EditQtyDialog" />
+        <activity android:name=".features.kasir.qty_dialog.QtyDialog" />
+        <activity android:name=".features.setting.edit_profil.EditPassword" />
+        <activity android:name=".features.setting.edit_profil.UserProfile" />
+        <activity android:name=".features.setting.SettingFragment" />
+        <activity android:name=".features.kasir.KasirFragment" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MainActivity" />
         <activity
-            android:name="com.example.praktikumprognet17.LoginActivity"
+            android:name=".LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,14 +55,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".MyFirebaseMessagingService"
-            >
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"

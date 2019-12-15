@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:id="@+id/kasir_fragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".features.kasir.KasirFragment">
+
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/kasir_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="@dimen/activity_vertical_margin"
-        tools:context="com.example.praktikumprognet17.features.kasir.show_produk.ProdukList">
+        tools:context="com.example.praktikumprognet17.features.kasir.KasirFragment">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshItems"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_above="@+id/rincian"
             >
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_produk"
+            <ScrollView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/rincian">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                tools:context=".features.kasir.KasirFragment">
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_produk"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    tools:listitem="@layout/item_kasir">
+                </androidx.recyclerview.widget.RecyclerView>
+                </RelativeLayout>
+            </ScrollView>
+
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -62,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/labelJumlah"
                     android:fontFamily="sans-serif-black"
-                    android:text="2"
+                    android:text="0"
                     android:textStyle="bold"
                     android:textColor="@color/overlay_dark_80"
                     android:textSize="7pt"></TextView>
@@ -88,7 +100,7 @@
                     android:layout_marginBottom="7dp"
                     android:layout_toRightOf="@id/labelHarga"
                     android:fontFamily="sans-serif-black"
-                    android:text="Rp.60.000"
+                    android:text="Rp 0"
                     android:textColor="@color/gold_100"
                     android:textSize="7pt"></TextView>
 
@@ -127,4 +139,3 @@
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-</ScrollView>

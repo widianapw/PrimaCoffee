@@ -17,10 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.praktikumprognet17.Firebase;
 import com.example.praktikumprognet17.MainActivity;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
 import com.example.praktikumprognet17.apihelper.UtilsApi;
+import com.example.praktikumprognet17.dao.ReportDAO;
 import com.example.praktikumprognet17.database.AppDatabase;
 import com.example.praktikumprognet17.database.entity.Report;
 import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.ResultKeranjang;
@@ -44,6 +46,8 @@ public class KeranjangBayar extends AppCompatActivity {
     int harga_keranjang;
     public static final String URL = "http://10.0.2.2:8000/api/";
     private List<ResultKeranjang> results = new ArrayList<>();
+    int totalHarga;
+    Firebase firebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +55,7 @@ public class KeranjangBayar extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         int id_user = sharedPreferences.getInt(String.valueOf(ID_USER), 0);
         database = AppDatabase.getDatabase(this);
-
+        firebase = new Firebase(getApplicationContext());
         Button btnBayarFinal = findViewById(R.id.button_bayar_final);
         EditText etUang = findViewById(R.id.etUang);
         TextView tvKembalian = findViewById(R.id.tv_uang_kembalian);
@@ -93,7 +97,7 @@ public class KeranjangBayar extends AppCompatActivity {
                 int a = Integer.parseInt(s.toString());
                 int b = Integer.parseInt(tvTotalBayar.getText().toString());
                 int c = a-b;
-                tvKembalian.setText(Integer.toString(c));
+                tvKembalian.setText("Rp "+c);
             }
 
             @Override
@@ -137,11 +141,16 @@ public class KeranjangBayar extends AppCompatActivity {
             });
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setTitle("MANTAP");
+            alertDialog.setTitle("Transaksi Berhasil!");
             alertDialog.setMessage("Cetak Struk?");
             alertDialog.setPositiveButton("YA", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    totalHarga = database.reportDAO().totalHarga().getTotal_harga();
+                    if (totalHarga>1000000){
+                        firebase.sendNotification();
+                    }
+                    Log.e("harga", "Total "+ totalHarga );
                     Intent i = new Intent(KeranjangBayar.this, MainActivity.class);
                     startActivity(i);
                 }

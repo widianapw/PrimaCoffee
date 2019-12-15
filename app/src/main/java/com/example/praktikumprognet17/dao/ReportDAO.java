@@ -20,6 +20,21 @@ public interface ReportDAO {
     @Query("select case strftime('%m',time) when '01' then 'January' when '02' then 'Febuary' when '03' then 'March' when '04' then 'April' when '05' then 'May' when '06' then 'June' when '07' then 'July' when '08' then 'August' when '09' then 'September' when '10' then 'October' when '11' then 'November' when '12' then 'December' else '' end as bulan, strftime('%m',time) as bln, SUM(qty * harga) as total from tb_report where strftime('%Y',time) = strftime('%Y','now') group by bln order by bln asc")
     List<ReportTahun> reportTahun();
 
+    @Query("SELECT SUM(qty * harga) as total_harga from tb_report where strftime('%Y-%m-%d', time) = strftime('%Y-%m-%d', 'now')")
+    TotalHarga totalHarga();
+
+    class TotalHarga{
+        int total_harga;
+
+        public int getTotal_harga() {
+            return total_harga;
+        }
+
+        public void setTotal_harga(int total_harga) {
+            this.total_harga = total_harga;
+        }
+    }
+
     class Terlaris {
         int total;
         String nama_produk;
