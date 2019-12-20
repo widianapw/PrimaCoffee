@@ -158,9 +158,8 @@ public class KeranjangBayar extends AppCompatActivity {
             alertDialog.setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
-                    // DO SOMETHING HERE
-
+                    Intent i = new Intent(KeranjangBayar.this, MainActivity.class);
+                    startActivity(i);
                 }
             });
 

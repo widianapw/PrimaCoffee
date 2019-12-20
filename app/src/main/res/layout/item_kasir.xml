@@ -8,7 +8,7 @@
     tools:context=".MainActivity"
     android:id="@+id/list">
     <RelativeLayout
-        android:layout_marginTop="10dp"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -16,20 +16,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/cardview_light_background"
-            app:cardCornerRadius="5dp">
+            app:cardBackgroundColor="@color/gold_100"
+            android:background="@drawable/radiusbutton"
+            app:cardCornerRadius="20dp">
 
             <RelativeLayout
+                android:padding="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/linear_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
+
 
                     <TextView
                         android:id="@+id/nama_produk"
@@ -37,15 +33,20 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        android:textColor="#fff"
                         tools:text="Caffe Latte" />
 
                     <TextView
                         android:id="@+id/harga"
+                        android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Rp.30.000" />
+                        tools:text="Rp.30.000"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
 
-                </LinearLayout>
+
 
                 <!--                <ImageButton-->
                 <!--                    android:layout_width="50dp"-->
