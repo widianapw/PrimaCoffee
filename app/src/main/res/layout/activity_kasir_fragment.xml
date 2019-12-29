@@ -128,7 +128,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@drawable/btn_rounded_green_300"
                     android:textAllCaps="false"
-                    android:textColor="@color/blue_grey_900"
+                    android:textColor="#fff"
                     android:text="Detail Item">
 
                 </Button>

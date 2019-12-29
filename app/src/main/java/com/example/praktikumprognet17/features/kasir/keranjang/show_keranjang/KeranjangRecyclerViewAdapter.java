@@ -39,7 +39,7 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
 
     BaseApiService mApiService;
     private LinearLayout layout_keranjang;
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
     OnItemEditClickListener listener;
 
     public KeranjangRecyclerViewAdapter(Context context, List<ResultKeranjang> results, OnItemEditClickListener listener) {

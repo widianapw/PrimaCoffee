@@ -39,7 +39,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class KasirFragment extends Fragment implements OnItemClickListener {
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
     private List<ResultProduk> results = new ArrayList<>();
     private ProdukRecyclerViewAdapter viewAdapter;
     private SwipeRefreshLayout refreshLayout;

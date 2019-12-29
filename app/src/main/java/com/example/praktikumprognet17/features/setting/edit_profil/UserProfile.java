@@ -32,7 +32,7 @@ public class UserProfile extends AppCompatActivity {
     public final static String TAG_TOKEN = "token";
     public final static int ID_USER = 0;
 
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
 //    private List<ResultProfile> results = new ArrayList<>();
 
 

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
+import com.example.praktikumprognet17.apihelper.UtilsApi;
 import com.example.praktikumprognet17.dao.ReportDAO;
 import com.example.praktikumprognet17.database.AppDatabase;
 import com.example.praktikumprognet17.database.AppExecutors;
@@ -32,7 +33,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ArrayList<ReportDAO.Terlaris> daftarTerlaris;
 
     private List<ResultReport> results = new ArrayList<>();
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
     BaseApiService mApiService;
     View mView;
     TerlarisRecyclerViewAdapter mAdapter;

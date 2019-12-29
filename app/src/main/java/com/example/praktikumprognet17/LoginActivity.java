@@ -60,13 +60,13 @@ public class LoginActivity extends AppCompatActivity {
         id_user = sharedPreferences.getInt(String.valueOf(ID_USER),0);
 
         token = sharedPreferences.getString(TAG_TOKEN, null);
-        cm = new Connectivity();
-        if(cm.isConnected(this)){
-            Toast.makeText(mContext, "TERKONEKSI", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(mContext, "TIDAK ADA INTERNET", Toast.LENGTH_SHORT).show();
-        }
+//        cm = new Connectivity();
+//        if(cm.isConnected(this)){
+//            Toast.makeText(mContext, "TERKONEKSI", Toast.LENGTH_SHORT).show();
+//        }
+//        else {
+//            Toast.makeText(mContext, "TIDAK ADA INTERNET", Toast.LENGTH_SHORT).show();
+//        }
 
         if (session){
             Log.e("as",""+id_user);

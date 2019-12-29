@@ -115,20 +115,13 @@
             android:textSize="10pt"
             android:textStyle="bold"></TextView>
 
-        <ImageView
-            android:id="@+id/garis5"
-            android:layout_width="330dp"
-            android:layout_height="1dp"
-            android:layout_below="@id/tag_nama"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="4dp"
-            android:background="@color/overlay_dark_10"></ImageView>
+
 
         <TextView
             android:id="@+id/nama_lengkap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/garis5"
+            android:layout_below="@id/tag_nama"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"

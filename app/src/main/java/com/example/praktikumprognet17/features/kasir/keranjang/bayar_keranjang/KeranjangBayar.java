@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.praktikumprognet17.Firebase;
+import com.example.praktikumprognet17.LoginActivity;
 import com.example.praktikumprognet17.MainActivity;
 import com.example.praktikumprognet17.R;
 import com.example.praktikumprognet17.apihelper.BaseApiService;
@@ -31,6 +32,7 @@ import com.example.praktikumprognet17.features.kasir.keranjang.show_keranjang.Va
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +46,7 @@ public class KeranjangBayar extends AppCompatActivity {
     final String SHARED_PREFERENCES_NAME = "shared_preferences";
     public final static int ID_USER = 0;
     int harga_keranjang;
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
     private List<ResultKeranjang> results = new ArrayList<>();
     int totalHarga;
     Firebase firebase;
@@ -97,7 +99,7 @@ public class KeranjangBayar extends AppCompatActivity {
                 int a = Integer.parseInt(s.toString());
                 int b = Integer.parseInt(tvTotalBayar.getText().toString());
                 int c = a-b;
-                tvKembalian.setText("Rp "+c);
+                tvKembalian.setText(String.valueOf(c));
             }
 
             @Override

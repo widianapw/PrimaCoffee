@@ -12,7 +12,7 @@
     <color name="colorNavigationIcon">#dae9f6</color>
     <color name="colorNavigationText">#ffffff</color>
 
-    <color name="colorPrimary">#1976D2</color>
+    <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#1565C0</color>
     <color name="colorPrimaryLight">#1E88E5</color>
     <color name="colorAccent">#FF4081</color>
@@ -48,7 +48,7 @@
     <color name="grey_80">#37474F</color>
     <color name="grey_90">#263238</color>
 
-
+    <color name="contentTextColor">#020000</color>
     <color name="gold_40">#66DAB96A</color>
     <color name="gold_100">#DAB96A</color>
     <color name="gold_60">#99DAB96A</color>

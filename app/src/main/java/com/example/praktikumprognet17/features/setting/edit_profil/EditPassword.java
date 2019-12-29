@@ -34,7 +34,7 @@ public class EditPassword extends AppCompatActivity {
     boolean session = false;
     String token;
 
-    public static final String URL = "http://10.0.2.2:8000/api/";
+    public static final String URL = UtilsApi.BASE_URL_API;
     final String SHARED_PREFERENCES_NAME = "shared_preferences";
     final String SESSION_STATUS = "session";
     public final static String TAG_TOKEN = "token";
